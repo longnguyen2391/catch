@@ -12,9 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     body: formData
                 })
 
-                const data = response.json()  
+                const data = await response.json();
                 
-                alert(data.status, data.message)
+                alert(data.message);
+
+                spanId = `current-${this.name}`; 
+                currentElement = document.getElementById(spanId);
+                currentElement.innerHTML = this.value; 
             } 
             catch (err) {
                 console.log(err)

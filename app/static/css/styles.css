@@ -66,4 +66,8 @@ html {
     margin-bottom: 2px;
 }
 
+.camera-config-section > span > span {
+    font-weight: bold;
+}
+
 

@@ -18,7 +18,7 @@
                     <span>Camera information</span>
                 </div>
 
-                <div class="function">                 
+                <div class="function">            
                     <span>Model: {{ summary.model }}</span>
                 </div>
             </div>
@@ -43,17 +43,17 @@
                 </div>
 
                 <div class="function">
-                    <span>Status: <span id="timelapse-status" hx-get="/api/timelapse-status" hx-trigger="every 5s" hx-swap="innerHTML"></span></span>
+                    <span>Status: <span id="timelapse-status"></span></span>
 
                     <div id="timelapse-setting"> 
                         <label>Minutes: </label>
-                        <input type="number" name="minutes">
+                        <input type="number" id="minutes" name="minutes">
                         <label>Second: </label>
-                        <input type="number" name="second">
+                        <input type="number" id="second" name="second">
                     </div>
 
-                    <button hx-post="/api/timelapse" hx-include="[name='minutes'], [name='second']">Start</button>
-                    <button hx-get="/api/timelapse" hx-include="[name='minutes'], [name='second']">End</button>
+                    <button id="timelapse-start-button">Start</button>
+                    <button id="timelapse-end-button">End</button>
                 </div>
             </div>
 
@@ -157,5 +157,6 @@
 
         <script src="{{ url_for('static', filename='js/capture.js') }}"></script>
         <script src="{{ url_for('static', filename='js/setConfiguration.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/timelapse.js') }}"></script>
     </body>
 </html>

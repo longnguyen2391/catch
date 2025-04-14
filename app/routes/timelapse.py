@@ -23,7 +23,7 @@ def status():
         'message': f'current timelapse status: {current_status}'
     }), 200
 
-@bp.route('/start', methods=['GET']) 
+@bp.route('/start', methods=['POST']) 
 def start(): 
     minutes = request.form.get('minutes') 
     second = request.form.get('second')
@@ -42,7 +42,7 @@ def start():
             while camera.get_timelapse_status(): 
                 
                 with camera_lock: 
-                    camera.capture()
+                    print("Timelapse is running")
                 
                 sleep(interval)
 
