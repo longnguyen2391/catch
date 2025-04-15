@@ -1,7 +1,8 @@
 from flask import (
     Blueprint,
     request,
-    jsonify
+    jsonify,
+    url_for
 )
 
 from ..extension import (
@@ -9,10 +10,20 @@ from ..extension import (
     camera_lock
 )
 
+from ..utils import save_config, load_config
 from threading import Thread
 from time import sleep
 
 bp = Blueprint('timelapse', __name__, url_prefix='/timelapse')
+
+@bp.route('/config', methods=['GET'])
+def config():
+    result = load_config()
+        
+    return jsonify({
+        'status': 'success', 
+        'message': result
+    }), 200
 
 @bp.route('/status', methods=['GET'])
 def status(): 
@@ -27,6 +38,9 @@ def status():
 def start(): 
     minutes = request.form.get('minutes') 
     second = request.form.get('second')
+    enable = request.form.get('enable')
+
+    save_config({'minutes': minutes, 'second': second, 'enable': enable})
 
     if len(minutes) == 0 or len(second) == 0: 
         return jsonify({
@@ -68,3 +82,4 @@ def end():
         return jsonify({
             'status': 'fail', 
         }), 400
+    

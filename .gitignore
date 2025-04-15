@@ -5,41 +5,8 @@ __pycache__/
 *.pyd
 *.pdb
 
-# Flask instance folder
-instance/
-
-# Virtual environment folders
-venv/
-env/
-ENV/
-*.egg-info/
-
-# OS generated files
-.DS_Store
-Thumbs.db
-
-# IDE configurations
-.vscode/
-.idea/
-
-# Jupyter notebook checkpoints
-.ipynb_checkpoints/
-
-# Logs
-*.log
-
-# Static files that don't need to be versioned
-app/static/css/*.css
-app/static/js/*.js
-app/static/fonts/*.ttf
-app/static/images/*.jpg
-
-# Dependency directories
-node_modules/
-
-# Python distribution files
-*.egg
-*.egg-info
-
-# .env or other sensitive information (e.g., API keys)
+#environment files
 .env
+
+#config json 
+config.json
