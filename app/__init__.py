@@ -31,7 +31,7 @@ def create_app():
         with camera_lock: 
             summary = camera.get_summary()
             config = camera.get_config()
-
+            
         return render_template('dashboard.html', config=config, summary=summary)
 
     return app

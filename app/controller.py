@@ -14,21 +14,8 @@ class Controller:
         self.capture_path = os.path.join(os.path.expanduser("~"), "Pictures")
 
         self.connect()
-
+        
     def connect(self):
-        """
-            Connecting to camera with specific contex 
-
-            Args: 
-                self: Instance that calling this method 
-            
-            Returns: 
-                True: if connected without error raised 
-                False: if GPhoto2Error raised 
-            
-            Raises: 
-                GPhoto2Error 
-        """
         try:
             if self.camera:
                 self.disconnect()
@@ -143,7 +130,3 @@ class Controller:
             print(e)
 
             return False
-        
-if __name__ == "__main__": 
-    camera = Controller()
-    camera.set_config(name="iso", value="400")
