@@ -56,7 +56,7 @@ def start():
             while camera.get_timelapse_status(): 
                 
                 with camera_lock: 
-                    print("Timelapse is running")
+                    camera.capture()
                 
                 sleep(interval)
 

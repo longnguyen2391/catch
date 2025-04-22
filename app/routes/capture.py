@@ -14,22 +14,15 @@ bp = Blueprint('capture', __name__, url_prefix='/capture')
 @bp.route('/preview', methods=['POST'])
 def preview():
     with camera_lock: 
-        filename = camera.capture()
+        file = camera.capture()
 
-    if filename is not None: 
-        filename = os.path.basename(filename)
-        
+    if file is not None: 
         return jsonify({
             'status': 'success',
-            'message': f'/images/{filename}'
+            'message': f'{file}'
         }), 200
     else: 
         return jsonify({
             'status': 'fail', 
             'message': 'no picture captured'
         }), 400
-    
-@bp.route('/images/<filename>')
-def get_image(filename):
-    return send_from_directory(camera.capture_path, filename)
-    
