@@ -119,14 +119,14 @@ class Controller:
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         file_name = f"{timestamp}.JPG"
 
-        file_path = os.path.join('home/bananapi/catch/app/static/', file_name)
+        file_path = os.path.join('/catch/app/static/', file_name)
 
         try: 
             capture = self.camera.capture(gp.GP_CAPTURE_IMAGE)
             picture = self.camera.file_get(capture.folder, capture.name, gp.GP_FILE_TYPE_NORMAL)
             picture.save(file_path)
 
-            return os.path.join('images', file_name)
+            return file_name
         except gp.GPhoto2Error as e: 
             print(file_path)
             return False
