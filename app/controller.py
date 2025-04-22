@@ -119,7 +119,7 @@ class Controller:
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         file_name = f"{timestamp}.JPG"
 
-        file_path = os.path.join('static', 'images', file_name)
+        file_path = os.path.join('home/bananapi/catch/app/static/images', file_name)
 
         try: 
             capture = self.camera.capture(gp.GP_CAPTURE_IMAGE)
