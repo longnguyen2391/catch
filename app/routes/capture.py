@@ -17,6 +17,8 @@ def preview():
         filename = camera.capture()
 
     if filename is not None: 
+        filename = os.path.basename(filename)
+        
         return jsonify({
             'status': 'success',
             'message': f'/images/{filename}'
