@@ -1,11 +1,13 @@
 from flask import (
     Blueprint,
     jsonify, 
-    url_for
+    url_for,
+    send_from_directory
 )
 
 from ..extension import camera, camera_lock
 
+import os 
 
 bp = Blueprint('capture', __name__, url_prefix='/capture')
 
@@ -15,7 +17,10 @@ def preview():
         file = camera.capture()
 
     if file is not None: 
-        file = url_for('static', filename=file)
+        directory = os.path.dirname(file) 
+        filename = os.path.basename(file)
+        
+        file = send_from_directory(directory, filename)
 
         return jsonify({
             'status': 'success',
