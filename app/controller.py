@@ -111,20 +111,21 @@ class Controller:
             print(e)
             return False
 
-    def set_capture_path(self, value):
+    def set_capture_path(self):
         pass
 
     def capture(self): 
         timestamp = time.strftime("%Y%m%d_%H%M%S")
         file_name = f"{timestamp}.JPG"
 
+        file_path = os.path.join(self.capture_path, file_name)
+
         try: 
             capture = self.camera.capture(gp.GP_CAPTURE_IMAGE)
             picture = self.camera.file_get(capture.folder, capture.name, gp.GP_FILE_TYPE_NORMAL)
-            picture.save(self.capture_path)
+            picture.save(file_path)
 
-            return os.path.join(self.capture_path, file_name)
+            return file_path
         except gp.GPhoto2Error as e: 
             print(e)
-
             return False
