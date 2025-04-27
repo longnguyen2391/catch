@@ -1,4 +1,4 @@
 flask 
+flask-login
 gunicorn 
 gphoto2
-libgphoto2

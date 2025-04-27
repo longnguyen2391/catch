@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <title>Login</title> 
+    <style> 
+        body {
+            overflow-y: hidden;
+            background-color: #FFFAFA;
+        }
+
+        .background {
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            padding: 3rem;
+
+            .card__content {
+                margin-top: 1rem;
+            }
+        }
+        
+        .form__field {
+            margin-bottom: 1rem;
+
+            label {
+                display: block;
+                margin-bottom: 4px;
+            }
+        }
+
+        .form__input {
+            padding: 4px 6px;
+            border: 1px solid #C0C0C0;
+            border-radius: 4px;
+        }
+    </style> 
+{% endblock %}
+
+{% block body %}
+    <div class="background">
+        <div class="card">
+            <div class="card__header">
+                <h1 class="card__title">Sign In</h1>
+            </div>
+            <div class="card__content">
+                <form method="post" class="form">
+                    <div class="form__field">
+                        <label for="username" class="form__label">Username</label>
+                        <input autocomplete="off" autofocus name="username" type="text" class="form__input" placeholder="e.g: administrator">
+                    </div>
+                    <div class="form__field">
+                        <label for="password" class="form__label">Password</label>
+                        <input name="password" type="password" class="form__input" placeholder="*******">
+                    </div>
+                    <div class="form__submit">
+                        <button class="form__button">Sign in</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

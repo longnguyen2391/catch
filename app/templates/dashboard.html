@@ -1,174 +1,172 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
-<html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Camera Control</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='/css/styles.css') }}">
-    </head>
+{% block head %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Control</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='/css/styles.css') }}">
+{% endblock %}
 
-    <body>
-        <div id="head">
-            <h1>Camera Control System</h1>
-        </div> 
+{% block body %}
+    <div id="head">
+        <h1>Camera Control System</h1>
+    </div> 
 
-        <div id="body">
-            <div class="section">
-                <div class="title">
-                    <span>Camera information</span>
-                </div>
-
-                <div class="function">            
-                    <span>Model: {{ summary.model }}</span>
-                </div>
+    <div id="body">
+        <div class="section">
+            <div class="title">
+                <span>Camera information</span>
             </div>
 
-            <div class="section">
-                <div class="title">
-                    <span>Capture</span>
-                </div>
+            <div class="function">            
+                <span>Model: {{ summary.model }}</span>
+            </div>
+        </div>
 
-                <div class="function">
-                    <div id="image-container">
-                        <span>No image</span>
-                    </div>
+        <div class="section">
+            <div class="title">
+                <span>Capture</span>
+            </div>
+
+            <div class="function">
+                <div id="image-container">
+                    <span>No image</span>
+                </div>
+                
+                <button id="capture-button">Capture image</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="title">
+                <span>Timelapse</span>
+            </div>
+
+            <div class="function">
+                <span>Status: <span id="timelapse-status"></span></span>
+
+                <div id="timelapse-setting"> 
+                    <label>Minutes: </label>
+                    <input type="number" id="minutes" name="minutes">
+                    <label>Second: </label>
+                    <input type="number" id="second" name="second">
+
+                    <button id="timelapse-start-button">Start</button>
+                    <button id="timelapse-end-button">End</button>  
                     
-                    <button id="capture-button">Capture image</button>
-                </div>
-            </div>
-
-            <div class="section">
-                <div class="title">
-                    <span>Timelapse</span>
-                </div>
-
-                <div class="function">
-                    <span>Status: <span id="timelapse-status"></span></span>
-
-                    <div id="timelapse-setting"> 
-                        <label>Minutes: </label>
-                        <input type="number" id="minutes" name="minutes">
-                        <label>Second: </label>
-                        <input type="number" id="second" name="second">
-
-                        <button id="timelapse-start-button">Start</button>
-                        <button id="timelapse-end-button">End</button>  
-                        
-                        <div id="remember"> 
-                            <input type="checkbox" id="auto-start"> 
-                            <label style="font-size: 12px;">Auto start timelapse</label> 
-                        </div>
+                    <div id="remember"> 
+                        <input type="checkbox" id="auto-start"> 
+                        <label style="font-size: 12px;">Auto start timelapse</label> 
                     </div>
                 </div>
-            </div>
-
-            <div class="section">
-                <div class="title">
-                    <span>Camera configuration</span>
-                </div>
-
-                <div class="function">
-                    <div class="camera-config-section">
-                        <span>ISO:
-                            <span id="current-iso">{{ config.iso.current_value }}</span>
-                        </span>
-                        <select name="iso">
-                            {% for choice in config.iso.choices %}
-                                <option value="{{ choice }}">{{ choice }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="camera-config-section">
-                        <span>Shutterspeed:
-                            <span id="current-shutterspeed">{{ config.shutterspeed.current_value }}</span>
-                        </span>
-                        <select name="shutterspeed">
-                            {% for choice in config.shutterspeed.choices %}
-                                <option value="{{ choice }}">{{ choice }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="camera-config-section">
-                        <span>Aperture:
-                            <span id="current-aperture">{{ config.aperture.current_value }}</span>
-                        </span>
-                        <select name="aperture">
-                            {% for choice in config.aperture.choices %}
-                                <option value="{{ choice }}">{{ choice }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="camera-config-section">
-                        <span>Whitebalance:
-                            <span id="current-whitebalance">{{ config.whitebalance.current_value }}</span>
-                        </span>
-                        <select name="whitebalance">
-                            {% for choice in config.whitebalance.choices %}
-                                <option value="{{ choice }}">{{ choice }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="camera-config-section">
-                        <span>Auto Exposure Mode:
-                            <span id="current-autoexposuremode">{{ config.autoexposuremode.current_value }}</span>
-                        </span>
-                        <select name="autoexposuremode">
-                            {% for choice in config.autoexposuremode.choices %}
-                                <option value="{{ choice }}">{{ choice }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="camera-config-section">
-                        <span>Auto Focus Mode:
-                            <span id="current-focusmode">{{ config.focusmode.current_value }}</span>
-                        </span>
-                        <select name="focusmode">
-                            {% for choice in config.focusmode.choices %}
-                                <option value="{{ choice }}">{{ choice }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-
-                    <div class="camera-config-section">
-                        <span>Image Format:
-                            <span id="current-imageformat">{{ config.imageformat.current_value }}</span>
-                        </span>
-                        <select name="imageformat">
-                            {% for choice in config.imageformat.choices %}
-                                <option value="{{ choice }}">{{ choice }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div> 
-            </div>
-
-            <div class="section">
-                <div class="title">
-                    <span>Storage configuration</span>
-                </div>
-
-                <div class="function">
-                    <span>Current save folder: {{ summary.capture_path}}</span>
-                    <span>Total disk capacity: <span id="disk-capacity"></span></span> 
-                    <span>Used disk: <span id="disk-used"></span></span> 
-                    <span>Free space: <span id="free-space"></span></span> 
-                    <span>Folder in local storage: <span id="current-folder-count"></span></span>
-                    <span>File in local storage: <span id="current-file-count"></span></span>
-                </div> 
             </div>
         </div>
 
-        <hr>
-        <div id="footer">
-            <span>Made by Long Nguyen. All rights reserved.</span>
+        <div class="section">
+            <div class="title">
+                <span>Camera configuration</span>
+            </div>
+
+            <div class="function">
+                <div class="camera-config-section">
+                    <span>ISO:
+                        <span id="current-iso">{{ config.iso.current_value }}</span>
+                    </span>
+                    <select name="iso">
+                        {% for choice in config.iso.choices %}
+                            <option value="{{ choice }}">{{ choice }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="camera-config-section">
+                    <span>Shutterspeed:
+                        <span id="current-shutterspeed">{{ config.shutterspeed.current_value }}</span>
+                    </span>
+                    <select name="shutterspeed">
+                        {% for choice in config.shutterspeed.choices %}
+                            <option value="{{ choice }}">{{ choice }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="camera-config-section">
+                    <span>Aperture:
+                        <span id="current-aperture">{{ config.aperture.current_value }}</span>
+                    </span>
+                    <select name="aperture">
+                        {% for choice in config.aperture.choices %}
+                            <option value="{{ choice }}">{{ choice }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="camera-config-section">
+                    <span>Whitebalance:
+                        <span id="current-whitebalance">{{ config.whitebalance.current_value }}</span>
+                    </span>
+                    <select name="whitebalance">
+                        {% for choice in config.whitebalance.choices %}
+                            <option value="{{ choice }}">{{ choice }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="camera-config-section">
+                    <span>Auto Exposure Mode:
+                        <span id="current-autoexposuremode">{{ config.autoexposuremode.current_value }}</span>
+                    </span>
+                    <select name="autoexposuremode">
+                        {% for choice in config.autoexposuremode.choices %}
+                            <option value="{{ choice }}">{{ choice }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="camera-config-section">
+                    <span>Auto Focus Mode:
+                        <span id="current-focusmode">{{ config.focusmode.current_value }}</span>
+                    </span>
+                    <select name="focusmode">
+                        {% for choice in config.focusmode.choices %}
+                            <option value="{{ choice }}">{{ choice }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="camera-config-section">
+                    <span>Image Format:
+                        <span id="current-imageformat">{{ config.imageformat.current_value }}</span>
+                    </span>
+                    <select name="imageformat">
+                        {% for choice in config.imageformat.choices %}
+                            <option value="{{ choice }}">{{ choice }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div> 
         </div>
 
-        <script src="{{ url_for('static', filename='js/capture.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/setConfiguration.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/timelapse.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/storage.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-    </body>
-</html>
+        <div class="section">
+            <div class="title">
+                <span>Storage configuration</span>
+            </div>
+
+            <div class="function">
+                <span>Current save folder: {{ summary.capture_path}}</span>
+                <span>Total disk capacity: <span id="disk-capacity"></span></span> 
+                <span>Used disk: <span id="disk-used"></span></span> 
+                <span>Free space: <span id="free-space"></span></span> 
+                <span>Folder in local storage: <span id="current-folder-count"></span></span>
+                <span>File in local storage: <span id="current-file-count"></span></span>
+            </div> 
+        </div>
+    </div>
+
+    <hr>
+    <div id="footer">
+        <span>Made by Long Nguyen. All rights reserved.</span>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/capture.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/setConfiguration.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/timelapse.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/storage.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}
