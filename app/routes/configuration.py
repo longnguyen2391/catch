@@ -1,14 +1,6 @@
-from flask import (
-    Blueprint,
-    request,
-    jsonify
-)
+from flask import Blueprint, jsonify, request
 
-from ..extension import (
-    camera,
-    camera_lock
-)
-
+from ..extension import camera, camera_lock
 from ..utils import count_folders_and_files, check_disk_usage
 
 bp = Blueprint('configuration', __name__, url_prefix='/configuration')

@@ -1,21 +1,12 @@
-from flask import (
-    Flask, 
-    render_template, 
-    session
-)
-
-from app.extension import (
-    camera, 
-    camera_lock
-)
-
 import os 
+import datetime 
+import threading 
+
+from flask import Flask, session
+from flask_login import LoginManager
 
 from app.utils import reconnecting
-from threading import Thread
-from flask_login import LoginManager, login_required
-from .user import User
-from datetime import timedelta
+from app.user import User
 
 def create_app():
     app = Flask(__name__)
@@ -26,7 +17,7 @@ def create_app():
         SESSION_PERMANENT = True 
     )
 
-    app.permanent_session_lifetime = timedelta(minutes=30)
+    app.permanent_session_lifetime = datetime.timedelta(minutes=30)
 
     @app.before_request
     def make_session_permanent():
@@ -62,7 +53,7 @@ def create_app():
     from .routes import dashboard 
     app.register_blueprint(dashboard.bp)
 
-    reconnecting_task = Thread(target=reconnecting) 
+    reconnecting_task = threading.Thread(target=reconnecting) 
     reconnecting_task.start() 
 
     return app

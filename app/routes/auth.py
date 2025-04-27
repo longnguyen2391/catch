@@ -1,6 +1,13 @@
-from flask import Blueprint, render_template, request, jsonify, redirect, url_for
-from werkzeug.security import check_password_hash
+from flask import (
+    Blueprint, 
+    render_template,  
+    jsonify, 
+    redirect, 
+    url_for, 
+    request
+)
 from flask_login import login_user 
+from werkzeug.security import check_password_hash
 
 from ..user import User
 from ..db import get_db 

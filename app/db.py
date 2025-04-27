@@ -5,6 +5,14 @@ from flask import current_app, g
 from werkzeug.security import generate_password_hash
 
 def get_db():
+    """
+        Connect to database in request if not connected via app config
+        and set query return type is dictionary
+
+        Return: 
+            - g.db: database that connected
+    """
+    
     if 'db' not in g:
         g.db = sqlite3.connect(
             current_app.config['DATABASE'],
@@ -15,6 +23,8 @@ def get_db():
     return g.db 
 
 def close_db(e=None):
+    """Close database connect if its connected"""
+
     db = g.pop('db', None)
 
     if db is not None: 

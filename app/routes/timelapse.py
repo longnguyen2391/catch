@@ -1,18 +1,10 @@
-from flask import (
-    Blueprint,
-    request,
-    jsonify,
-    url_for
-)
+import time
+import threading
 
-from ..extension import (
-    camera,
-    camera_lock
-)
+from flask import Blueprint, jsonify, request
 
 from ..utils import save_config, load_config
-from threading import Thread
-from time import sleep
+from ..extension import camera, camera_lock
 
 bp = Blueprint('timelapse', __name__, url_prefix='/timelapse')
 
@@ -58,9 +50,9 @@ def start():
                 with camera_lock: 
                     camera.capture()
                 
-                sleep(interval)
+                time.sleep(interval)
 
-        timelapse_task = Thread(target=task)
+        timelapse_task = threading.Thread(target=task)
         timelapse_task.start()
 
         return jsonify({

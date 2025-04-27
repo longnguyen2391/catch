@@ -1,7 +1,7 @@
-import gphoto2 as gp
 import os 
 import time
-from flask import url_for
+
+import gphoto2 as gp
 
 class Controller: 
     def __init__(self): 
