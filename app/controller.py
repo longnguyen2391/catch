@@ -128,5 +128,5 @@ class Controller:
 
             return file_name
         except gp.GPhoto2Error as e: 
-            print(file_path)
+            print(e)
             return False

@@ -2,6 +2,7 @@ import os
 import json
 import shutil 
 import time 
+import subprocess 
 
 from app.extension import camera
 
@@ -86,3 +87,17 @@ def load_config():
         save_config(default)
 
         return default
+
+def sync_files():
+    try: 
+        result = subprocess.run(
+            ["bash", "scripts/timelapsephotosync.sh"], 
+            check=True, 
+            capture_output=True, 
+            text=True
+        )
+
+        return result.stdout 
+    
+    except subprocess.CalledProcessError as e: 
+        return e.stderr 

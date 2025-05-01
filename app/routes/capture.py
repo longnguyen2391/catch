@@ -1,9 +1,6 @@
 from flask import Blueprint, jsonify, send_from_directory
 
-
 from ..extension import camera, camera_lock
-
-import os 
 
 bp = Blueprint('capture', __name__, url_prefix='/capture')
 

@@ -25,3 +25,20 @@ document.addEventListener("DOMContentLoaded", async function () {
         console.log(err);
     }
 })
+
+const syncButton = document.getElementById("manual-sync") 
+
+syncButton.addEventListener("click", async function () {
+    try { 
+        const response = await fetch('/configuration/sync', {
+            method: "POST"
+        })
+
+        const data = await response.json() 
+
+        alert(data.message)
+    }
+    catch (err) {
+        console.log(err)
+    }
+})

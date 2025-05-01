@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 
 from ..extension import camera, camera_lock
-from ..utils import count_folders_and_files, check_disk_usage
+from ..utils import count_folders_and_files, check_disk_usage, sync_files
 
 bp = Blueprint('configuration', __name__, url_prefix='/configuration')
 
@@ -51,3 +51,18 @@ def storage_info():
             'free': free
         }
     }), 200
+
+@bp.route('/sync', methods=['POST'])
+def sync():
+    result = sync_files() 
+
+    if "error" in result.lower():
+        return jsonify({
+            'status': 'fail',
+            'message': result
+        }), 500 
+    else: 
+        return jsonify({
+            'status': 'success',
+            'message': result
+        }), 200

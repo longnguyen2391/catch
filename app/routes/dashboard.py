@@ -9,7 +9,6 @@ bp = Blueprint('dashboard', __name__)
 @login_required
 def dashboard():
     with camera_lock: 
+        config = camera.get_config() 
         summary = camera.get_summary()
-        config = camera.get_config()
-        
-    return render_template('dashboard.html', config=config, summary=summary)
+    return render_template('dashboard.html')
