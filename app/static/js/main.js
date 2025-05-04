@@ -1,22 +1,23 @@
 document.addEventListener("DOMContentLoaded", async function () {
     try { 
+        // Get data from config.json
         const response = await fetch('/timelapse/config', {
             method: "GET"
         })
 
         const data = await response.json();
-                
         const autoStart = document.getElementById("auto-start");
 
+        // Check if auto enable?
         if (data.message.enable === "true"){
             autoStart.checked = true; 
-
             await enableTimelapse(data);
         }
         else {
             autoStart.checked = false;
         }
-
+        
+        // Using to auto enable timelapse
         async function enableTimelapse(configData) { 
             const formData = new FormData(); 
 

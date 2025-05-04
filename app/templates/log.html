@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>View logs</title>
+<style>
+    body { 
+        margin: 0; 
+        padding: 0;
+    }
+
+    .hero {
+        display: flex; 
+        justify-content: center; 
+        align-items: center;
+        background-color: #55A845;
+        
+        .hero__title {
+            font-weight: bold;
+            color: white;
+        }
+    }
+
+    .content {
+        padding: 0.5rem;
+    }
+</style>
+{% endblock  %} 
+
+{% block body %}
+<div class="hero">
+    <h1 class="hero__title">System logs</h1>
+</div>
+<div class="content">
+    {{ content | safe}}
+</div>
+{% endblock %}

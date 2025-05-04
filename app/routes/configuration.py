@@ -1,4 +1,6 @@
-from flask import Blueprint, jsonify, request, current_app
+import os
+
+from flask import Blueprint, jsonify, request, current_app, render_template
 
 from ..utils import count_folders_and_files, check_disk_usage, sync_files
 
@@ -65,3 +67,12 @@ def sync():
             'status': 'success',
             'message': result
         }), 200
+    
+@bp.route('log', methods=["GET"]) 
+def log(): 
+    log_file = os.path.join(current_app.root_path, 'static', 'system.log')
+
+    with open(log_file, "r") as f: 
+        content = f.read().replace("\n", "<br>")
+        
+        return render_template("log.html", content=content)

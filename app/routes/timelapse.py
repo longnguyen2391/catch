@@ -22,7 +22,7 @@ def status():
 
     return jsonify({
         'status': 'success', 
-        'message': f'current timelapse status: {current_status}'
+        'message': f'{current_status}'
     }), 200
 
 @bp.route('/start', methods=['POST']) 

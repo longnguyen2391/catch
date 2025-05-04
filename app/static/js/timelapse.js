@@ -3,6 +3,23 @@ endButton = document.getElementById("timelapse-end-button");
 autoStart = document.getElementById("auto-start");
 timelapseStatus = document.getElementById("timelapse-status");
 
+// Handle timelapse is working or not? 
+document.addEventListener("DOMContentLoaded", async function () {
+    try { 
+        const response = await fetch("/timelapse/status", {
+            method: "GET"
+        })
+
+        const data = await response.json() 
+
+        timelapseStatus.innerHTML = ""; 
+        timelapseStatus.innerHTML = data.message; 
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+// Handle start timelapse button
 startButton.addEventListener("click", async function () {
     const minutes = document.getElementById("minutes").value;  
     const second = document.getElementById("second").value; 
@@ -38,6 +55,7 @@ startButton.addEventListener("click", async function () {
     }
 })
 
+// Handle stop timelapse button
 endButton.addEventListener("click", async function () {
     try {
         const response = await fetch("/timelapse/end", {
