@@ -1,6 +1,5 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app
 
-from ..extension import camera, camera_lock
 from ..utils import count_folders_and_files, check_disk_usage, sync_files
 
 bp = Blueprint('configuration', __name__, url_prefix='/configuration')
@@ -10,8 +9,8 @@ def set():
     name = next(iter(request.form))
     value = request.form.get(name)
     
-    with camera_lock: 
-        result = camera.set_config(name=name, value=value)
+    with current_app.camera_lock: 
+        result = current_app.camera.set_config(name=name, value=value)
 
         if result:
             return jsonify({
@@ -28,8 +27,8 @@ def set():
 def status(): 
     current_status = None 
 
-    with camera_lock:
-        current_status = camera.is_connected() 
+    with current_app.camera_lock:
+        current_status = current_app.camera.is_connected() 
 
     return jsonify({
         'status': 'success', 

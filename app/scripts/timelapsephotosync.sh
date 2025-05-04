@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LOCAL_DIR="/home/longnguyen/Pictures"
+LOCAL_DIR="$HOME/Pictures"
 REMOTE_DIR="gdrive:"
 
 for folder in "$LOCAL_DIR"/*; do

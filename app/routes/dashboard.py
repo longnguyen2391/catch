@@ -1,14 +1,17 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, current_app
 from flask_login import login_required
-
-from ..extension import camera, camera_lock
+from gphoto2 import GPhoto2Error
 
 bp = Blueprint('dashboard', __name__)
 
 @bp.route('/')
 @login_required
 def dashboard():
-    with camera_lock: 
-        config = camera.get_config() 
-        summary = camera.get_summary()
-    return render_template('dashboard.html')
+    try: 
+        with current_app.camera_lock: 
+            config = current_app.camera.get_config() 
+            summary = current_app.camera.get_summary()
+    except GPhoto2Error as error: 
+        return render_template('error.html', error=error)
+    
+    return render_template('dashboard.html', config=config, summary=summary)

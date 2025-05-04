@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Error</title>
+<style>
+    body {
+        display: flex;  
+        justify-content: center;
+        align-items: center; 
+
+        height: 100vh; 
+    }
+     
+    .error {
+        font-size: large;  
+        font-weight: bold; 
+    }
+</style>
+{% endblock  %} 
+
+{% block body %}
+<div class="error">
+    {{ error }}
+</div>
+{% endblock %}

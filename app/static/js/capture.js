@@ -1,7 +1,7 @@
-capture_button = document.getElementById("capture-button")
-image_container = document.getElementById("image-container") 
+captureButton = document.getElementById("capture-button")
+imageContainer = document.getElementById("image-container") 
 
-capture_button.addEventListener("click", async () => {
+captureButton.addEventListener("click", async () => {
     try {
         const response = await fetch("/capture/preview", {
             method: "POST"
@@ -15,9 +15,9 @@ capture_button.addEventListener("click", async () => {
             img.width = 300; 
             img.height = 240; 
 
-            image_container.innerHTML = "";
-            image_container.style.opacity = "1";
-            image_container.appendChild(img);
+            imageContainer.innerHTML = "";
+            imageContainer.style.opacity = "1";
+            imageContainer.appendChild(img);
         } 
         else { 
             alert(data.message);

@@ -4,19 +4,23 @@
     <title>Login</title> 
     <style> 
         body {
-            overflow-y: hidden;
             background-color: #FFFAFA;
+            overflow: hidden;
         }
 
         .background {
             display: flex; 
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         .card {
-            padding: 3rem;
+            transform: scale(1.5);
+
+            .card__header {
+                text-align: center;
+            }
 
             .card__content {
                 margin-top: 1rem;
@@ -37,6 +41,23 @@
             border: 1px solid #C0C0C0;
             border-radius: 4px;
         }
+
+        .form__submit {
+            display: flex;
+            justify-content: center;
+            align-items: center; 
+
+            .form__button {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                transform: scale(1.2);
+                margin-bottom: 4rem;
+            }
+        }
     </style> 
 {% endblock %}
 
@@ -44,7 +65,7 @@
     <div class="background">
         <div class="card">
             <div class="card__header">
-                <h1 class="card__title">Sign In</h1>
+                <h1 class="card__title">Catch</h1>
             </div>
             <div class="card__content">
                 <form method="post" class="form">

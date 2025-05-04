@@ -1,10 +1,9 @@
 import time
 import threading
 
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app
 
 from ..utils import save_config, load_config
-from ..extension import camera, camera_lock
 
 bp = Blueprint('timelapse', __name__, url_prefix='/timelapse')
 
@@ -19,7 +18,7 @@ def config():
 
 @bp.route('/status', methods=['GET'])
 def status(): 
-    current_status = camera.get_timelapse_status() 
+    current_status = current_app.camera.get_timelapse_status() 
 
     return jsonify({
         'status': 'success', 
@@ -42,13 +41,13 @@ def start():
     else: 
         interval = int(minutes) * 60 + int(second) 
 
-        camera.set_timelapse_status(True)
+        current_app.camera.set_timelapse_status(True)
 
         def task(): 
-            while camera.get_timelapse_status(): 
+            while current_app.camera.get_timelapse_status(): 
                 
-                with camera_lock: 
-                    camera.capture()
+                with current_app.camera_lock: 
+                    current_app.camera.capture()
                 
                 time.sleep(interval)
 
@@ -62,10 +61,10 @@ def start():
             
 @bp.route('/end', methods=['GET']) 
 def end(): 
-    current_status = camera.get_timelapse_status()
+    current_status = current_app.camera.get_timelapse_status()
 
     if current_status: 
-        camera.set_timelapse_status(not current_status) 
+        current_app.camera.set_timelapse_status(not current_status) 
         
         return jsonify({
             'status': 'success', 

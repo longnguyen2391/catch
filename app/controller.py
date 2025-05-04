@@ -1,32 +1,40 @@
 import os 
 import time
+import logging 
 
 import gphoto2 as gp
+from flask import current_app
 
 class Controller: 
-    def __init__(self): 
+    def __init__(self, logger): 
         self.camera = None 
         self.context = gp.Context()
         self.timelapse_status = False
 
         self.setting_folders = ['imgsettings', 'capturesettings']
         self.setting = {}
+        self.logger = logger 
 
         self.capture_path = os.path.join(os.path.expanduser("~"), "Pictures")
 
         self.connect()
-        
+        self.logger.info("Camera initialize")
+         
     def connect(self):
         try:
             if self.camera:
+                self.logger.info("Disconnecting with camera before connect")
                 self.disconnect()
 
             self.camera = gp.Camera()
             self.camera.init(self.context)
-
+            
+            self.logger.info("Camera connected")
             return True
         except gp.GPhoto2Error as e:
             print(e)
+
+            self.logger.warning("Camera disconnected")
             return False
     
     def disconnect(self):  
@@ -35,18 +43,22 @@ class Controller:
             self.camera = None
             self.status = False 
 
+            self.logger.info("Manually disconnected from camera")
             return True
         except gp.GPhoto2Error as e:
-            print(e)
 
+            self.logger.warning(f"Error occurs when trying disconnect with camera: {e}")
             return False
              
     def is_connected(self):
         try: 
             self.camera.get_summary() 
+
+            self.logger.info("Camera is working")
             return True
         except gp.GPhoto2Error as e:
-            print(e)
+            
+            self.logger.warning("Camera not found")
             return False
 
     def get_summary(self):
@@ -112,21 +124,25 @@ class Controller:
             print(e)
             return False
 
-    def set_capture_path(self):
-        pass
-
     def capture(self): 
         timestamp = time.strftime("%Y%m%d_%H%M%S")
-        file_name = f"{timestamp}.JPG"
 
-        file_path = os.path.join(self.capture_path, file_name)
+        folder_name = time.strftime("%Y%m%d") 
+        file_name = f"{timestamp}.JPG"
+        
+        os.makedirs(folder_name, exists_ok=True)
+
+        file_path = os.path.join(self.capture_path, folder_name, file_name)
 
         try: 
             capture = self.camera.capture(gp.GP_CAPTURE_IMAGE)
             picture = self.camera.file_get(capture.folder, capture.name, gp.GP_FILE_TYPE_NORMAL)
             picture.save(file_path)
 
+            self.logger.info(f"Picture captured: {file_path}")
             return file_name
         except gp.GPhoto2Error as e: 
             print(e)
+
+            self.logger.error(f"Error when capturing: {e}")
             return False
