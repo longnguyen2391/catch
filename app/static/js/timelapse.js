@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     start.addEventListener("click", async function () {
         const minutes = document.getElementById("minutes").value 
         const second = document.getElementById("seconds").value
+        const interval = (Number(minutes) * 60) + Number(second)
+
         const formData = new FormData()
         
         formData.append("minutes", minutes)
@@ -36,6 +38,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         if (data.status === "success"){
             timelapseStatus.innerHTML = "Active"
+            duration.innerHTML = `${interval} (s)`
             showToast(`${data.message}`)
         }
     })
