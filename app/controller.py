@@ -4,10 +4,11 @@ import time
 import gphoto2 as gp
 
 class Controller: 
-    def __init__(self, logger): 
+    def __init__(self, logger, lock): 
         self.camera = None 
         self.context = gp.Context()
         self.logger = logger
+        self.lock = lock
         self.capture_path = os.path.join(os.path.expanduser("~"), "Pictures")
 
         self.timelapse_status = False
@@ -17,6 +18,8 @@ class Controller:
         self.connect()
         self.logger.info("Camera initialize")
          
+    # Camera connection methods
+
     def connect(self):
         try:
             # Clear camera
@@ -61,6 +64,21 @@ class Controller:
             self.logger.warning(f"Error when checking camera status: {error}")
             return False
 
+    def reconnect(self): 
+        SAFETY_CHECK_TIME = 3000 
+        RECONNECT_TIME = 60
+
+        while True:
+            if self.is_connected(): 
+                time.sleep(SAFETY_CHECK_TIME) 
+                continue 
+            else: 
+                self.connect() 
+                time.sleep(RECONNECT_TIME)
+                continue 
+
+    # Camera config methods
+
     def get_config(self): 
         # Calling libgphoto2 api to get list of config 
         config = self.camera.get_config()
@@ -90,16 +108,6 @@ class Controller:
         
         return self.setting
 
-    def get_timelapse_status(self): 
-        return self.timelapse_status
-
-    def set_timelapse_status(self, value): 
-        # Checking value is legit or not
-        if type(value) is not bool:
-            raise TypeError
-        else: 
-            self.timelapse_status = value
-
     def set_config(self, name, value):
         # Type casting if given value is not string
         if type(value) is int:
@@ -127,6 +135,8 @@ class Controller:
             self.logger.warning(f"Error when setting new value to {name}: {error}")
             return False
 
+    # Camera capture and timelapse methods
+
     def capture(self): 
         # Get captured timestamp
         timestamp = time.strftime("%Y%m%d_%H%M%S")
@@ -153,3 +163,22 @@ class Controller:
 
             self.logger.error(f"Error when capturing: {error}")
             return False
+
+    def get_timelapse_status(self): 
+        return self.timelapse_status
+
+    def set_timelapse_status(self, value): 
+        if type(value) is not bool:
+            raise TypeError
+        else: 
+            self.timelapse_status = value
+
+    def timelapse(self, interval): 
+        self.set_timelapse_status(True)
+        
+        while self.get_timelapse_status(): 
+
+            with self.lock: 
+                self.capture()
+            
+            time.sleep(interval)

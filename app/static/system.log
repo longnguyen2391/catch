@@ -1,51 +1,9 @@
-2025-05-12 08:54:18,242 - INFO - Camera connected successfully
-2025-05-12 08:54:18,243 - INFO - Camera initialize
-2025-05-12 08:54:18,265 - INFO - Camera is working
-2025-05-12 08:55:37,670 - INFO - Syncing files to cloud with result: Uploading folder 20250511...
-Upload completed. Deleting 20250511
-20250512 existed. Deleting.
-
-2025-05-12 09:11:26,460 - INFO - Camera connected successfully
-2025-05-12 09:11:26,461 - INFO - Camera initialize
-2025-05-12 09:11:26,487 - INFO - Camera is working
-2025-05-12 09:13:08,606 - INFO - Camera connected successfully
-2025-05-12 09:13:08,606 - INFO - Camera initialize
-2025-05-12 09:13:08,636 - INFO - Camera is working
-2025-05-12 09:13:27,167 - INFO - Syncing files to cloud with result: 20250512 existed. Deleting.
-
-2025-05-12 09:13:59,431 - INFO - Camera connected successfully
-2025-05-12 09:13:59,431 - INFO - Camera initialize
-2025-05-12 09:13:59,454 - INFO - Camera is working
-2025-05-12 09:14:32,721 - INFO - Syncing files to cloud with result: Uploading folder 20250216...
-Upload completed. Deleting 20250216
-
-2025-05-12 09:15:43,048 - INFO - Camera connected successfully
-2025-05-12 09:15:43,048 - INFO - Camera initialize
-2025-05-12 09:15:43,073 - INFO - Camera is working
-2025-05-12 09:15:48,992 - INFO - Successfully set iso config to 800
-2025-05-12 09:16:24,182 - INFO - Successfully set iso config to 400
-2025-05-12 09:16:33,379 - INFO - Successfully set iso config to 800
-2025-05-12 09:16:37,266 - INFO - Successfully set iso config to 400
-2025-05-12 09:16:45,035 - INFO - Successfully set shutterspeed config to 1/60
-2025-05-12 09:16:56,168 - INFO - Camera connected successfully
-2025-05-12 09:16:56,168 - INFO - Camera initialize
-2025-05-12 09:16:56,193 - INFO - Camera is working
-2025-05-12 09:16:59,383 - INFO - Successfully set iso config to 800
-2025-05-12 09:17:06,224 - INFO - Successfully set shutterspeed config to 1/30
-2025-05-12 09:17:57,456 - INFO - Successfully set iso config to 400
-2025-05-12 09:18:08,474 - INFO - Successfully set iso config to 200
-2025-05-12 09:18:15,807 - INFO - Successfully set shutterspeed config to 1/60
-2025-05-12 09:18:19,239 - INFO - Successfully set iso config to 100
-2025-05-12 09:18:22,375 - INFO - Successfully set iso config to 200
-2025-05-12 09:18:24,200 - INFO - Successfully set iso config to 100
-2025-05-12 09:18:30,121 - INFO - Successfully set shutterspeed config to 1/50
-2025-05-12 09:18:39,363 - INFO - Successfully set whitebalance config to Shadow
-2025-05-12 09:18:41,695 - INFO - Successfully set whitebalance config to Daylight
-2025-05-12 09:18:45,293 - INFO - Successfully set iso config to 200
-2025-05-12 09:18:47,568 - INFO - Successfully set focusmode config to AI Focus
-2025-05-12 10:36:51,227 - WARNING - Error when connecting to camera: [-105] Unknown model
-2025-05-12 10:36:51,227 - INFO - Camera initialize
-2025-05-12 10:36:51,315 - WARNING - Error when checking camera status: [-105] Unknown model
-2025-05-12 10:36:51,315 - INFO - Disconnecting with camera before connect
-2025-05-12 10:36:51,316 - INFO - Manually disconnected from camera
-2025-05-12 10:36:51,389 - WARNING - Error when connecting to camera: [-105] Unknown model
+2025-05-12 20:35:16,143 - WARNING - Error when connecting to camera: [-105] Unknown model
+2025-05-12 20:35:16,143 - INFO - Camera initialize
+2025-05-12 20:35:16,241 - WARNING - Error when checking camera status: [-105] Unknown model
+2025-05-12 20:35:16,241 - INFO - Disconnecting with camera before connect
+2025-05-12 20:35:16,241 - INFO - Manually disconnected from camera
+2025-05-12 20:35:16,335 - WARNING - Error when connecting to camera: [-105] Unknown model
+2025-05-12 20:36:41,857 - INFO - Camera connected successfully
+2025-05-12 20:36:41,858 - INFO - Camera initialize
+2025-05-12 20:36:41,882 - INFO - Camera is working

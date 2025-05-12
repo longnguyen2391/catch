@@ -41,17 +41,7 @@ def start():
     else: 
         interval = int(minutes) * 60 + int(second) 
 
-        app = current_app._get_current_object() 
-        app.camera.set_timelapse_status(True)
-
-        def task(): 
-            with app.app_context(): 
-                while app.camera.get_timelapse_status(): 
-                    with app.camera_lock: 
-                        app.camera.capture()
-                    time.sleep(interval)
-
-        timelapse_task = threading.Thread(target=task)
+        timelapse_task = threading.Thread(target=current_app.camera.timelapse, args=(interval,))
         timelapse_task.start()
 
         return jsonify({

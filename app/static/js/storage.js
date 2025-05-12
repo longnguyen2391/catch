@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const folders  = document.getElementById("folder-count")
     const pictures = document.getElementById("picture-count")
 
+    // Handle sync button
     const sync = document.getElementById("sync") 
 
     sync.addEventListener("click", async function () {
@@ -19,6 +20,9 @@ document.addEventListener("DOMContentLoaded", async function () {
         showToast(syncData.message)
     })
 
+    const log = document.getElementById("log") 
+
+    // Get storage information and display
     const storageResponse = await fetch("/configuration/storage", {
         method: "GET" 
     }) 

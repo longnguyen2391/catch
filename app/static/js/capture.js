@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const containerRect = container.getBoundingClientRect()
 
             container.innerHTML = ""
+            container.style.opacity = "1"
 
             image.src = data.message; 
             image.width = containerRect.width; 

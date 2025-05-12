@@ -60,11 +60,10 @@ def create_app():
     logger.addHandler(file_handler)
 
     # Register share resources
-    camera = Controller(logger=logger) 
-    app.camera = camera 
+    lock = threading.Lock() 
+    camera = Controller(logger=logger, lock=lock)
 
-    camera_lock = threading.Lock() 
-    app.camera_lock = camera_lock 
+    app.camera = camera 
 
     # Register blueprints 
     from .routes import configuration
@@ -76,24 +75,18 @@ def create_app():
     from .routes import timelapse
     app.register_blueprint(timelapse.bp)
 
-    # Thread running in background to connect camera whenever its disconnected
-    def reconnecting(): 
-        SAFETY_CHECK_TIME = 3000 
-        RECONNECT_TIME = 60
-
-        with app.app_context(): 
-            while True: 
-                if app.camera.is_connected(): 
-                    time.sleep(SAFETY_CHECK_TIME) 
-                    continue 
-                else: 
-                    app.camera.connect() 
-                    time.sleep(RECONNECT_TIME)
-                    continue 
-
-    reconnecting_task = threading.Thread(target=reconnecting) 
+    # Background threads 
+    reconnecting_task = threading.Thread(target=app.camera.reconnect) 
     reconnecting_task.start() 
 
+    from .utils import load_config
+    config = load_config() 
+
+    if config['enable'] == True: 
+        interval = int(config['minutes']) * 60 + int(config['second'])
+        timelapse_task = threading.Thread(target=app.camera.timelapse, args=(interval,))
+        timelapse_task.start()
+    
     # Index route
     @app.route('/')
     @login_required

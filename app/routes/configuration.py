@@ -37,7 +37,7 @@ def set():
 
 @bp.route('/get', methods=['GET'])
 def get():
-    with current_app.camera_lock:
+    with current_app.camera.lock:
         config = current_app.camera.get_config()
     
     if config: 
