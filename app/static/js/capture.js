@@ -1,3 +1,5 @@
+import { showToast } from "./main.js"
+
 document.addEventListener("DOMContentLoaded", function () {
     const capture = document.getElementById("capture") 
 
@@ -21,5 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             container.appendChild(image)
         }
+
+        showToast(data.message)
     })
 })

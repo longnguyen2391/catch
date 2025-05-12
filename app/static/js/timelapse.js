@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     // Timelapse
     if (statusData.status === "success"){
-        if (statusData.message === "true"){
+        if (statusData.message === "True"){
             timelapseStatus.innerHTML = "Active"
         } else {
             timelapseStatus.innerHTML = "Inactive"

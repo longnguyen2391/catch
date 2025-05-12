@@ -68,9 +68,11 @@ def end():
         
         return jsonify({
             'status': 'success', 
+            'message': 'timelapse ended'
         }), 200 
     else: 
         return jsonify({
             'status': 'fail', 
+            'message': 'error occurs while stop timelapse'
         }), 400
     
