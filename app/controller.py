@@ -136,7 +136,7 @@ class Controller:
         file_name = f"{timestamp}.JPG"
 
         # Create folder if not existed 
-        os.makedirs(folder_name, exist_ok=True)
+        os.makedirs(os.path.join(self.capture_path, folder_name), exist_ok=True)
 
         # Create final file path 
         file_path = os.path.join(self.capture_path, folder_name, file_name)
@@ -148,7 +148,7 @@ class Controller:
             picture.save(file_path)
 
             self.logger.info(f"Picture captured: {file_path}")
-            return file_name
+            return os.path.join(folder_name, file_name)
         except gp.GPhoto2Error as error: 
 
             self.logger.error(f"Error when capturing: {error}")
