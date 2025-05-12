@@ -4,8 +4,8 @@ import time
 import threading 
 import logging
 
-from flask import Flask, session
-from flask_login import LoginManager
+from flask import Flask, session, render_template
+from flask_login import LoginManager, login_required
 
 from app.user import User 
 from app.controller import Controller
@@ -76,9 +76,6 @@ def create_app():
     from .routes import timelapse
     app.register_blueprint(timelapse.bp)
 
-    from .routes import dashboard 
-    app.register_blueprint(dashboard.bp)
-
     # Thread running in background to connect camera whenever its disconnected
     def reconnecting(): 
         SAFETY_CHECK_TIME = 3000 
@@ -96,6 +93,12 @@ def create_app():
 
     reconnecting_task = threading.Thread(target=reconnecting) 
     reconnecting_task.start() 
+
+    # Index route
+    @app.route('/')
+    @login_required
+    def dashboard():
+        return render_template('dashboard.html')
 
     # Ready to go
     return app

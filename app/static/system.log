@@ -1,129 +1,51 @@
-2025-05-04 21:07:09,061 - WARNING - Camera disconnected
-2025-05-04 21:09:51,442 - WARNING - Camera disconnected
-2025-05-04 21:11:03,099 - WARNING - Camera disconnected
-2025-05-04 21:11:03,293 - WARNING - Camera disconnected
-2025-05-04 21:11:08,449 - WARNING - Camera disconnected
-2025-05-04 21:11:13,609 - WARNING - Camera disconnected
-2025-05-04 21:11:18,756 - WARNING - Camera disconnected
-2025-05-04 21:17:57,621 - WARNING - Camera disconnected
-2025-05-04 21:17:57,833 - WARNING - Camera disconnected
-2025-05-04 21:18:07,984 - WARNING - Camera disconnected
-2025-05-04 21:18:18,130 - WARNING - Camera disconnected
-2025-05-04 21:22:36,726 - WARNING - Camera disconnected
-2025-05-04 21:22:36,726 - INFO - Camera initialize
-2025-05-04 21:22:36,836 - WARNING - Camera not found
-2025-05-04 21:22:36,837 - INFO - Manually disconnected from camera
-2025-05-04 21:22:36,944 - WARNING - Camera disconnected
-2025-05-04 21:23:37,069 - WARNING - Camera not found
-2025-05-04 21:23:37,069 - INFO - Manually disconnected from camera
-2025-05-04 21:23:37,144 - WARNING - Camera disconnected
-2025-05-04 21:24:14,143 - WARNING - Camera disconnected
-2025-05-04 21:24:14,143 - INFO - Camera initialize
-2025-05-04 21:24:14,252 - WARNING - Camera not found
-2025-05-04 21:24:14,252 - INFO - Disconnecting with camera before connect
-2025-05-04 21:24:14,252 - INFO - Manually disconnected from camera
-2025-05-04 21:24:14,356 - WARNING - Camera disconnected
-2025-05-04 21:25:14,496 - WARNING - Camera not found
-2025-05-04 21:25:14,496 - INFO - Disconnecting with camera before connect
-2025-05-04 21:25:14,496 - INFO - Manually disconnected from camera
-2025-05-04 21:25:14,567 - WARNING - Camera disconnected
-2025-05-04 21:51:38,221 - WARNING - Camera disconnected
-2025-05-04 21:51:38,221 - INFO - Camera initialize
-2025-05-04 21:51:38,341 - WARNING - Camera not found
-2025-05-04 21:51:38,342 - INFO - Disconnecting with camera before connect
-2025-05-04 21:51:38,342 - INFO - Manually disconnected from camera
-2025-05-04 21:51:38,452 - WARNING - Camera disconnected
-2025-05-04 21:52:38,616 - WARNING - Camera not found
-2025-05-04 21:52:38,616 - INFO - Disconnecting with camera before connect
-2025-05-04 21:52:38,616 - INFO - Manually disconnected from camera
-2025-05-04 21:52:38,715 - WARNING - Camera disconnected
-2025-05-04 21:53:38,872 - WARNING - Camera not found
-2025-05-04 21:53:38,872 - INFO - Disconnecting with camera before connect
-2025-05-04 21:53:38,872 - INFO - Manually disconnected from camera
-2025-05-04 21:53:38,970 - WARNING - Camera disconnected
-2025-05-04 21:54:22,021 - WARNING - Camera disconnected
-2025-05-04 21:54:22,021 - INFO - Camera initialize
-2025-05-04 21:54:22,129 - WARNING - Camera not found
-2025-05-04 21:54:22,129 - INFO - Disconnecting with camera before connect
-2025-05-04 21:54:22,129 - INFO - Manually disconnected from camera
-2025-05-04 21:54:22,228 - WARNING - Camera disconnected
-2025-05-04 21:55:22,346 - WARNING - Camera not found
-2025-05-04 21:55:22,346 - INFO - Disconnecting with camera before connect
-2025-05-04 21:55:22,346 - INFO - Manually disconnected from camera
-2025-05-04 21:55:22,411 - WARNING - Camera disconnected
-2025-05-04 21:55:55,897 - WARNING - Camera disconnected
-2025-05-04 21:55:55,897 - INFO - Camera initialize
-2025-05-04 21:55:55,996 - WARNING - Camera not found
-2025-05-04 21:55:55,997 - INFO - Disconnecting with camera before connect
-2025-05-04 21:55:55,997 - INFO - Manually disconnected from camera
-2025-05-04 21:55:56,080 - WARNING - Camera disconnected
-2025-05-04 21:56:44,641 - WARNING - Camera disconnected
-2025-05-04 21:56:44,641 - INFO - Camera initialize
-2025-05-04 21:56:44,762 - WARNING - Camera not found
-2025-05-04 21:56:44,762 - INFO - Disconnecting with camera before connect
-2025-05-04 21:56:44,763 - INFO - Manually disconnected from camera
-2025-05-04 21:56:44,847 - WARNING - Camera disconnected
-2025-05-04 21:57:44,963 - WARNING - Camera not found
-2025-05-04 21:57:44,964 - INFO - Disconnecting with camera before connect
-2025-05-04 21:57:44,964 - INFO - Manually disconnected from camera
-2025-05-04 21:57:45,028 - WARNING - Camera disconnected
-2025-05-04 21:58:45,150 - WARNING - Camera not found
-2025-05-04 21:58:45,150 - INFO - Disconnecting with camera before connect
-2025-05-04 21:58:45,150 - INFO - Manually disconnected from camera
-2025-05-04 21:58:45,254 - WARNING - Camera disconnected
-2025-05-04 21:59:40,974 - WARNING - Camera disconnected
-2025-05-04 21:59:40,974 - INFO - Camera initialize
-2025-05-04 21:59:41,089 - WARNING - Camera not found
-2025-05-04 21:59:41,090 - INFO - Disconnecting with camera before connect
-2025-05-04 21:59:41,090 - INFO - Manually disconnected from camera
-2025-05-04 21:59:41,170 - WARNING - Camera disconnected
-2025-05-04 22:00:41,304 - WARNING - Camera not found
-2025-05-04 22:00:41,304 - INFO - Disconnecting with camera before connect
-2025-05-04 22:00:41,304 - INFO - Manually disconnected from camera
-2025-05-04 22:00:41,388 - WARNING - Camera disconnected
-2025-05-04 22:01:03,192 - WARNING - Camera disconnected
-2025-05-04 22:01:03,192 - INFO - Camera initialize
-2025-05-04 22:01:03,293 - WARNING - Camera not found
-2025-05-04 22:01:03,293 - INFO - Disconnecting with camera before connect
-2025-05-04 22:01:03,293 - INFO - Manually disconnected from camera
-2025-05-04 22:01:03,392 - WARNING - Camera disconnected
-2025-05-04 22:01:18,450 - WARNING - Camera disconnected
-2025-05-04 22:01:18,451 - INFO - Camera initialize
-2025-05-04 22:01:18,542 - WARNING - Camera not found
-2025-05-04 22:01:18,542 - INFO - Disconnecting with camera before connect
-2025-05-04 22:01:18,542 - INFO - Manually disconnected from camera
-2025-05-04 22:01:18,623 - WARNING - Camera disconnected
-2025-05-04 22:02:12,918 - WARNING - Camera disconnected
-2025-05-04 22:02:12,918 - INFO - Camera initialize
-2025-05-04 22:02:13,012 - WARNING - Camera not found
-2025-05-04 22:02:13,012 - INFO - Disconnecting with camera before connect
-2025-05-04 22:02:13,012 - INFO - Manually disconnected from camera
-2025-05-04 22:02:13,093 - WARNING - Camera disconnected
-2025-05-04 22:02:28,904 - WARNING - Camera disconnected
-2025-05-04 22:02:28,904 - INFO - Camera initialize
-2025-05-04 22:02:29,021 - WARNING - Camera not found
-2025-05-04 22:02:29,021 - INFO - Disconnecting with camera before connect
-2025-05-04 22:02:29,021 - INFO - Manually disconnected from camera
-2025-05-04 22:02:29,105 - WARNING - Camera disconnected
-2025-05-04 22:02:44,493 - WARNING - Camera disconnected
-2025-05-04 22:02:44,493 - INFO - Camera initialize
-2025-05-04 22:02:44,582 - WARNING - Camera not found
-2025-05-04 22:02:44,582 - INFO - Disconnecting with camera before connect
-2025-05-04 22:02:44,582 - INFO - Manually disconnected from camera
-2025-05-04 22:02:44,664 - WARNING - Camera disconnected
-2025-05-04 22:03:44,791 - WARNING - Camera not found
-2025-05-04 22:03:44,791 - INFO - Disconnecting with camera before connect
-2025-05-04 22:03:44,791 - INFO - Manually disconnected from camera
-2025-05-04 22:03:44,861 - WARNING - Camera disconnected
-2025-05-04 22:04:44,996 - WARNING - Camera not found
-2025-05-04 22:04:44,996 - INFO - Disconnecting with camera before connect
-2025-05-04 22:04:44,996 - INFO - Manually disconnected from camera
-2025-05-04 22:04:45,061 - WARNING - Camera disconnected
-2025-05-04 22:05:45,194 - WARNING - Camera not found
-2025-05-04 22:05:45,194 - INFO - Disconnecting with camera before connect
-2025-05-04 22:05:45,194 - INFO - Manually disconnected from camera
-2025-05-04 22:05:45,286 - WARNING - Camera disconnected
-2025-05-04 22:06:45,427 - WARNING - Camera not found
-2025-05-04 22:06:45,427 - INFO - Disconnecting with camera before connect
-2025-05-04 22:06:45,427 - INFO - Manually disconnected from camera
-2025-05-04 22:06:45,514 - WARNING - Camera disconnected
+2025-05-12 08:54:18,242 - INFO - Camera connected successfully
+2025-05-12 08:54:18,243 - INFO - Camera initialize
+2025-05-12 08:54:18,265 - INFO - Camera is working
+2025-05-12 08:55:37,670 - INFO - Syncing files to cloud with result: Uploading folder 20250511...
+Upload completed. Deleting 20250511
+20250512 existed. Deleting.
+
+2025-05-12 09:11:26,460 - INFO - Camera connected successfully
+2025-05-12 09:11:26,461 - INFO - Camera initialize
+2025-05-12 09:11:26,487 - INFO - Camera is working
+2025-05-12 09:13:08,606 - INFO - Camera connected successfully
+2025-05-12 09:13:08,606 - INFO - Camera initialize
+2025-05-12 09:13:08,636 - INFO - Camera is working
+2025-05-12 09:13:27,167 - INFO - Syncing files to cloud with result: 20250512 existed. Deleting.
+
+2025-05-12 09:13:59,431 - INFO - Camera connected successfully
+2025-05-12 09:13:59,431 - INFO - Camera initialize
+2025-05-12 09:13:59,454 - INFO - Camera is working
+2025-05-12 09:14:32,721 - INFO - Syncing files to cloud with result: Uploading folder 20250216...
+Upload completed. Deleting 20250216
+
+2025-05-12 09:15:43,048 - INFO - Camera connected successfully
+2025-05-12 09:15:43,048 - INFO - Camera initialize
+2025-05-12 09:15:43,073 - INFO - Camera is working
+2025-05-12 09:15:48,992 - INFO - Successfully set iso config to 800
+2025-05-12 09:16:24,182 - INFO - Successfully set iso config to 400
+2025-05-12 09:16:33,379 - INFO - Successfully set iso config to 800
+2025-05-12 09:16:37,266 - INFO - Successfully set iso config to 400
+2025-05-12 09:16:45,035 - INFO - Successfully set shutterspeed config to 1/60
+2025-05-12 09:16:56,168 - INFO - Camera connected successfully
+2025-05-12 09:16:56,168 - INFO - Camera initialize
+2025-05-12 09:16:56,193 - INFO - Camera is working
+2025-05-12 09:16:59,383 - INFO - Successfully set iso config to 800
+2025-05-12 09:17:06,224 - INFO - Successfully set shutterspeed config to 1/30
+2025-05-12 09:17:57,456 - INFO - Successfully set iso config to 400
+2025-05-12 09:18:08,474 - INFO - Successfully set iso config to 200
+2025-05-12 09:18:15,807 - INFO - Successfully set shutterspeed config to 1/60
+2025-05-12 09:18:19,239 - INFO - Successfully set iso config to 100
+2025-05-12 09:18:22,375 - INFO - Successfully set iso config to 200
+2025-05-12 09:18:24,200 - INFO - Successfully set iso config to 100
+2025-05-12 09:18:30,121 - INFO - Successfully set shutterspeed config to 1/50
+2025-05-12 09:18:39,363 - INFO - Successfully set whitebalance config to Shadow
+2025-05-12 09:18:41,695 - INFO - Successfully set whitebalance config to Daylight
+2025-05-12 09:18:45,293 - INFO - Successfully set iso config to 200
+2025-05-12 09:18:47,568 - INFO - Successfully set focusmode config to AI Focus
+2025-05-12 10:36:51,227 - WARNING - Error when connecting to camera: [-105] Unknown model
+2025-05-12 10:36:51,227 - INFO - Camera initialize
+2025-05-12 10:36:51,315 - WARNING - Error when checking camera status: [-105] Unknown model
+2025-05-12 10:36:51,315 - INFO - Disconnecting with camera before connect
+2025-05-12 10:36:51,316 - INFO - Manually disconnected from camera
+2025-05-12 10:36:51,389 - WARNING - Error when connecting to camera: [-105] Unknown model

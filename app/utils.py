@@ -44,15 +44,18 @@ def load_config():
         return default
 
 def sync_files():
+    script_path = os.path.join(os.path.dirname(__file__), 'scripts', 'timelapsephotosync.sh')
     try: 
         result = subprocess.run(
-            ["bash", "scripts/timelapsephotosync.sh"], 
+            ["bash", script_path], 
             check=True, 
-            capture_output=True, 
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT, 
             text=True
         )
 
-        return result.stdout 
+        return True, result.stdout 
     
     except subprocess.CalledProcessError as e: 
-        return e.stderr 
+        return False, e.stdout
+    

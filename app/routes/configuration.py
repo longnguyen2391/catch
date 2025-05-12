@@ -1,8 +1,18 @@
 import os
 
-from flask import Blueprint, jsonify, request, current_app, render_template
+from flask import (
+    Blueprint, 
+    render_template,
+    jsonify, 
+    request, 
+    current_app, 
+)
 
-from ..utils import count_folders_and_files, check_disk_usage, sync_files
+from ..utils import (
+    count_folders_and_files, 
+    check_disk_usage, 
+    sync_files
+)
 
 bp = Blueprint('configuration', __name__, url_prefix='/configuration')
 
@@ -14,21 +24,35 @@ def set():
     with current_app.camera_lock: 
         result = current_app.camera.set_config(name=name, value=value)
 
-        if result:
-            return jsonify({
-                'status': 'success', 
-                'message': f'{name} is set to {value}'
-            }), 200 
-        else: 
-            return jsonify({
-                'status': 'fail', 
-                'message': 'failed to set new config'
-            }), 400
+    if result:
+        return jsonify({
+            'status': 'success', 
+            'message': f'{name} is set to {value}'
+        }), 200 
+    else: 
+        return jsonify({
+            'status': 'fail', 
+            'message': 'failed to set new config'
+        }), 400
+
+@bp.route('/get', methods=['GET'])
+def get():
+    with current_app.camera_lock:
+        config = current_app.camera.get_config()
+    
+    if config: 
+        return jsonify({
+            'status': 'success', 
+            'message': config
+        }), 200 
+    else: 
+        return jsonify({
+            'status': 'fail', 
+            'message': 'failed to get camera config'
+        }), 400
 
 @bp.route('/status', methods=['GET'])
 def status(): 
-    current_status = None 
-
     with current_app.camera_lock:
         current_status = current_app.camera.is_connected() 
 
@@ -37,7 +61,7 @@ def status():
         'message': f'{current_status}'
     }), 200 
 
-@bp.route('/storage-info', methods=['GET'])
+@bp.route('/storage', methods=['GET'])
 def storage_info():
     folder, file = count_folders_and_files()
     total, used, free = check_disk_usage()
@@ -55,20 +79,24 @@ def storage_info():
 
 @bp.route('/sync', methods=['POST'])
 def sync():
-    result = sync_files() 
+    success, result = sync_files() 
 
-    if "error" in result.lower():
-        return jsonify({
-            'status': 'fail',
-            'message': result
-        }), 500 
-    else: 
+    if success:
+        current_app.camera.logger.info(f"Syncing files to cloud with result: {result}")
+
         return jsonify({
             'status': 'success',
             'message': result
         }), 200
+    else: 
+        current_app.camera.logger.warning(f"Failed to syncing files to cloud with result: {result}")
+
+        return jsonify({
+            'status': 'fail',
+            'message': result
+        }), 400 
     
-@bp.route('log', methods=["GET"]) 
+@bp.route('/log', methods=["GET"]) 
 def log(): 
     log_file = os.path.join(current_app.root_path, 'static', 'system.log')
 

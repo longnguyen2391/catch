@@ -41,15 +41,15 @@ def start():
     else: 
         interval = int(minutes) * 60 + int(second) 
 
-        current_app.camera.set_timelapse_status(True)
+        app = current_app._get_current_object() 
+        app.camera.set_timelapse_status(True)
 
         def task(): 
-            while current_app.camera.get_timelapse_status(): 
-                
-                with current_app.camera_lock: 
-                    current_app.camera.capture()
-                
-                time.sleep(interval)
+            with app.app_context(): 
+                while app.camera.get_timelapse_status(): 
+                    with app.camera_lock: 
+                        app.camera.capture()
+                    time.sleep(interval)
 
         timelapse_task = threading.Thread(target=task)
         timelapse_task.start()

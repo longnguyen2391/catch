@@ -39,12 +39,12 @@ def login():
             current_user = User(user['id'], user['username'])
             login_user(current_user)
 
-            return redirect(url_for('dashboard.dashboard'))
+            return redirect(url_for('dashboard'))
         else: 
             return jsonify({
                 'status': 'failed', 
                 'message': 'wrong username or password'
-            })
+            }), 400
     
     if request.method == 'GET': 
         return render_template('login.html')

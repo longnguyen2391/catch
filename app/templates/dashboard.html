@@ -1,174 +1,230 @@
 {% extends "base.html" %}
 
 {% block head %}
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Camera Control</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='/css/styles.css') }}">
 {% endblock %}
 
 {% block body %}
-    <div class="hero">
-        <h1 class="hero__title">Camera Control System</h1>
-    </div> 
+    <div class="header">
+        <h1 class="header__title">Camera Control System</h1>
+    </div>
 
-    <div id="body">
-        <div class="section">
-            <div class="title">
-                <span>Camera information</span>
-            </div>
-
-            <div class="function">            
-                <span>Model: {{ summary.model }}</span>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="title">
-                <span>Capture</span>
-            </div>
-
-            <div class="function">
-                <div id="image-container">
-                    <span>No image</span>
+    <div class="content">
+        <div class="content__box"> 
+            <div class="content__header">
+                <h2 class="content__title">Information</h2>
+            </div>                
+            <div class="content__controls">
+                <div class="content__row">
+                    <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" x="0px" y="0px" viewBox="0 0 122.88 90.78" style="enable-background:new 0 0 122.88 90.78" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path class="st0" d="M46.86,0.05h43.63l9.94,17.7h20.48c1.09,0,1.98,0.92,1.98,1.98v69.08c0,1.06-0.91,1.98-1.98,1.98H1.98 C0.92,90.78,0,89.89,0,88.81l0-69.08c0-1.09,0.89-1.98,1.98-1.98h9.21V11.4h11.38v6.35h12.36c2.57-5.08,5.14-10.15,7.71-15.23 C44.2-0.57,43.34,0.05,46.86,0.05L46.86,0.05z M110.07,26.5c3.26,0,5.9,2.64,5.9,5.9c0,3.26-2.64,5.9-5.9,5.9 c-3.26,0-5.9-2.64-5.9-5.9C104.18,29.14,106.82,26.5,110.07,26.5L110.07,26.5L110.07,26.5z M66.64,33.37 c9.87,0,17.88,8.01,17.88,17.88c0,9.87-8.01,17.88-17.88,17.88c-9.87,0-17.88-8.01-17.88-17.88 C48.76,41.38,56.77,33.37,66.64,33.37L66.64,33.37z M66.64,21.73c16.31,0,29.53,13.22,29.53,29.53c0,16.3-13.22,29.53-29.53,29.53 c-16.3,0-29.53-13.23-29.53-29.53C37.12,34.95,50.34,21.73,66.64,21.73L66.64,21.73z"/></g></svg>
+                    <span class="content__label content__label--primary">Model:</span>
+                    <span id="camera" class="content__label"></span>
                 </div>
-                
-                <button id="capture-button">Capture image</button>
+                <hr>
+                <div class="content__row">
+                    <svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" width="16px" height="16px" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 258.253"><path fill-rule="nonzero" d="M472.064 38.531v29.616H499.9c3.359 0 6.379 1.378 8.549 3.551A12.13 12.13 0 01512 80.249v97.757c0 3.323-1.389 6.37-3.561 8.541-2.169 2.168-5.217 3.559-8.539 3.559h-27.836v29.616c0 21.195-17.357 38.531-38.531 38.531H38.531C17.325 258.253 0 240.93 0 219.722V38.531C0 17.348 17.367 0 38.531 0h395.002c21.216 0 38.531 17.316 38.531 38.531zm-124.38 10.01h58.543c6.336 0 11.525 5.271 11.525 11.525v138.292c0 6.254-5.271 11.525-11.525 11.525h-58.543V48.541zm-96.706 0h70.068v161.342h-70.068V48.541zm-185.158 0h58.544v161.342H65.82c-6.254 0-11.517-5.191-11.517-11.525V60.066c0-6.336 5.182-11.525 11.517-11.525zm87.788 0h70.068v161.342h-70.068V48.541zm292.995 168.413V41.297c0-8.686-7.15-15.835-15.835-15.835H41.298c-8.711 0-15.835 7.13-15.835 15.835v175.657c0 8.676 7.161 15.837 15.835 15.837h389.47c8.697 0 15.835-7.123 15.835-15.837z"/></svg>                        
+                    <span class="content__label content__label--primary">Battery:</span>
+                    <span id="battery" class="content__label"></span>
+                </div>
+                <hr>
+                <div class="content__row">
+                    <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" x="0px" y="0px" viewBox="0 0 123.45 123.45" style="enable-background:new 0 0 123.45 123.45" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;stroke:#000000;stroke-width:0.5669;stroke-miterlimit:22.9256;}</style><g><path class="st0" d="M61.72,0.28c14.77,0,28.33,5.22,38.93,13.9L46.86,45.24V2.1C51.62,0.91,56.6,0.28,61.72,0.28L61.72,0.28z M105.99,19.12c10.63,11.05,17.17,26.06,17.17,42.6c0,3.02-0.22,5.98-0.64,8.89L69.66,40.09L105.99,19.12L105.99,19.12z M121.05,77.76c-4.9,18.16-17.91,32.99-34.91,40.36l0-60.51L121.05,77.76L121.05,77.76z M79.21,120.64 c-5.54,1.64-11.41,2.53-17.48,2.53c-13.75,0-26.44-4.52-36.67-12.14l54.16-31.27L79.21,120.64L79.21,120.64z M19.41,106.27 C7.63,95.07,0.28,79.26,0.28,61.72c0-3.03,0.22-6,0.65-8.92l54.51,32.65L19.41,106.27L19.41,106.27z M2.42,45.62 C7.58,26.57,21.67,11.21,39.91,4.27l-0.44,63.54L2.42,45.62L2.42,45.62z"/></g></svg>                        
+                    <span class="content__label content__label--primary">Shuttercount: </span>
+                    <span id="shuttercount" class="content__label"></span>
+                </div>
+                <hr>
+                <div class="content__row">
+                    <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" x="0px" y="0px" viewBox="0 0 123.45 123.45" style="enable-background:new 0 0 123.45 123.45" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;stroke:#000000;stroke-width:0.5669;stroke-miterlimit:22.9256;}</style><g><path class="st0" d="M61.72,0.28c14.77,0,28.33,5.22,38.93,13.9L46.86,45.24V2.1C51.62,0.91,56.6,0.28,61.72,0.28L61.72,0.28z M105.99,19.12c10.63,11.05,17.17,26.06,17.17,42.6c0,3.02-0.22,5.98-0.64,8.89L69.66,40.09L105.99,19.12L105.99,19.12z M121.05,77.76c-4.9,18.16-17.91,32.99-34.91,40.36l0-60.51L121.05,77.76L121.05,77.76z M79.21,120.64 c-5.54,1.64-11.41,2.53-17.48,2.53c-13.75,0-26.44-4.52-36.67-12.14l54.16-31.27L79.21,120.64L79.21,120.64z M19.41,106.27 C7.63,95.07,0.28,79.26,0.28,61.72c0-3.03,0.22-6,0.65-8.92l54.51,32.65L19.41,106.27L19.41,106.27z M2.42,45.62 C7.58,26.57,21.67,11.21,39.91,4.27l-0.44,63.54L2.42,45.62L2.42,45.62z"/></g></svg>                        
+                    <span class="content__label content__label--primary">Lens: </span>
+                    <span id="lens" class="content__label"></span>
+                </div>
+
             </div>
         </div>
-
-        <div class="section">
-            <div class="title">
-                <span>Timelapse</span>
+        <div class="content__box"> 
+            <div class="content__header">
+                <h2 class="content__title">Capture</h2>
             </div>
-
-            <div class="function">
-                <span>Status: <span id="timelapse-status"></span></span>
-
-                <div id="timelapse-setting"> 
-                    <label>Minutes: </label>
-                    <input type="number" id="minutes" name="minutes">
-                    <label>Second: </label>
-                    <input type="number" id="second" name="second">
-
-                    <button id="timelapse-start-button">Start</button>
-                    <button id="timelapse-end-button">End</button>  
-                    
-                    <div id="remember"> 
-                        <input type="checkbox" id="auto-start"> 
-                        <label style="font-size: 12px;">Auto start timelapse</label> 
+            <div class="content__controls">
+                <div class="content__row">
+                    <div class="content__image">
+                        <span>No image.</span>
                     </div>
                 </div>
+                <div class="content__row">
+                    <button id="capture" class="content__button">Get preview image</button>
+                </div>
             </div>
         </div>
 
-        <div class="section">
-            <div class="title">
-                <span>Camera configuration</span>
+        <div class="content__box"> 
+            <div class="content__header">
+                <h2 class="content__title">Timelapse</h2>
             </div>
+            <div class="content__controls">
+                <div class="content__row">
+                    <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 113.525 122.879" enable-background="new 0 0 113.525 122.879" xml:space="preserve"><g><path d="M78.098,13.509l0.033,0.013h0.008c2.908,1.182,5.699,2.603,8.34,4.226c2.621,1.612,5.121,3.455,7.467,5.491 c11.992,10.408,19.58,25.764,19.58,42.879v0.016h-0.006c-0.006,15.668-6.361,29.861-16.633,40.127 c-10.256,10.256-24.434,16.605-40.09,16.613v0.006h-0.033h-0.015v-0.006c-15.666-0.004-29.855-6.357-40.123-16.627l-0.005,0.004 C6.365,95.994,0.015,81.814,0.006,66.15H0v-0.033v-0.039h0.006c0.004-6.898,1.239-13.511,3.492-19.615 c0.916-2.486,2.009-4.897,3.255-7.21C13.144,27.38,23.649,18.04,36.356,13.142l2.634-1.017v2.817v18.875v1.089l-0.947,0.569 l-0.007,0.004l-0.008,0.005l-0.007,0.004c-1.438,0.881-2.809,1.865-4.101,2.925l0.004,0.004c-1.304,1.079-2.532,2.242-3.659,3.477 h-0.007c-5.831,6.375-9.393,14.881-9.393,24.22v0.016h-0.007c0.002,9.9,4.028,18.877,10.527,25.375l-0.004,0.004 c6.492,6.488,15.457,10.506,25.349,10.512v-0.006h0.033h0.015v0.006c9.907-0.002,18.883-4.025,25.374-10.518 S92.66,76.045,92.668,66.148H92.66v-0.033V66.09h0.008c-0.002-6.295-1.633-12.221-4.484-17.362 c-0.451-0.811-0.953-1.634-1.496-2.453c-2.719-4.085-6.252-7.591-10.359-10.266l-0.885-0.577v-1.042V15.303v-2.857L78.098,13.509 L78.098,13.509z M47.509,0h18.507h1.938v1.937v49.969v1.937h-1.938H47.509h-1.937v-1.937V1.937V0H47.509L47.509,0z"/></g></svg>
+                    <span class="content__label content__label--primary">Status:</span>
+                    <span id="timelapse-status" class="content__label">Active</span>
+                </div>
+                <hr>
+                <div class="content__row">
+                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" viewBox="0 0 101.5 122.88"><title>time-limit</title><path d="M56.84,21.74a50.83,50.83,0,1,1-9.59-.24V13c0-.13,0-.26,0-.39h-9.5a2.83,2.83,0,0,1-2.83-2.83V2.83A2.84,2.84,0,0,1,37.76,0H66.33a2.84,2.84,0,0,1,2.83,2.83V9.77a2.83,2.83,0,0,1-2.83,2.83H56.82c0,.13,0,.26,0,.39v8.75ZM50.75,72.37,84.53,62.05a35.33,35.33,0,0,0-33.78-25V72.37Zm45.58-35.3c2-4.7,1.73-9.62-1.09-12.92-3.38-4-9.49-4.41-15.17-1.63A82.53,82.53,0,0,1,96.33,37.07Zm-91.16,0c-2-4.7-1.74-9.62,1.08-12.92,3.38-4,9.5-4.41,15.18-1.63A82,82,0,0,0,5.17,37.07ZM80.87,42A42.59,42.59,0,1,0,93.35,72.13,42.47,42.47,0,0,0,80.87,42Z"/></svg>
+                    <span class="content__label content__label--primary">Duration: </span>
+                    <span id="duration" class="content__label">200 (s)</span>
+                </div>
+                <hr>
 
-            <div class="function">
-                <div class="camera-config-section">
-                    <span>ISO:
-                        <span id="current-iso">{{ config.iso.current_value }}</span>
-                    </span>
-                    <select name="iso">
-                        {% for choice in config.iso.choices %}
-                            <option value="{{ choice }}">{{ choice }}</option>
-                        {% endfor %}
-                    </select>
+                <div class="content__row">
+                    <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" x="0px" y="0px" viewBox="0 0 110.43 123.94" style="enable-background:new 0 0 110.43 123.94" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;stroke:#000000;stroke-width:0.5;stroke-miterlimit:2.6131;}</style><g><path class="st0" d="M78.37,79.91c-0.19,0.47-0.49,0.91-0.88,1.3L73.5,85.2l-0.02,0.02c-0.39,0.39-0.83,0.69-1.3,0.88 c-0.49,0.21-1,0.32-1.55,0.32c-0.55,0-1.07-0.11-1.55-0.32c-0.47-0.21-0.9-0.51-1.27-0.9l-2.6-2.57c-0.16,0.07-0.32,0.16-0.47,0.23 c-0.44,0.21-0.9,0.39-1.34,0.56c-0.02,0.02-0.04,0.02-0.07,0.02c-0.44,0.18-0.91,0.33-1.42,0.49c-0.16,0.05-0.32,0.11-0.49,0.14 l0,3.17c0,0.55-0.11,1.07-0.3,1.55c-0.19,0.47-0.49,0.9-0.88,1.28l-0.04,0.04c-0.39,0.37-0.83,0.67-1.3,0.86 c-0.48,0.19-0.99,0.3-1.51,0.3h-5.7c-0.55,0-1.06-0.11-1.55-0.3c-0.47-0.19-0.91-0.49-1.3-0.88c-0.39-0.39-0.69-0.83-0.88-1.3 c-0.19-0.48-0.3-0.99-0.3-1.55v-3.62c-0.18-0.07-0.35-0.12-0.53-0.19c-0.47-0.18-0.93-0.39-1.41-0.6 c-0.47-0.23-0.93-0.44-1.37-0.67c-0.14-0.07-0.28-0.16-0.42-0.23L41.7,84.2l-0.05,0.05c-0.39,0.37-0.83,0.65-1.3,0.84 c-0.47,0.19-0.98,0.28-1.51,0.28c-0.53,0-1.04-0.09-1.51-0.28c-0.47-0.19-0.91-0.46-1.3-0.83c-0.02-0.02-0.04-0.02-0.04-0.04 l-3.98-4.03c-0.39-0.37-0.7-0.81-0.9-1.28c-0.21-0.47-0.32-1-0.32-1.57c0-0.55,0.11-1.07,0.32-1.57c0.21-0.49,0.51-0.91,0.9-1.28 l2.55-2.55c-0.09-0.18-0.16-0.33-0.23-0.49c-0.19-0.44-0.39-0.9-0.58-1.39c-0.18-0.46-0.35-0.95-0.49-1.44 c-0.05-0.16-0.11-0.33-0.14-0.49h-3.17c-0.55,0-1.07-0.11-1.55-0.3c-0.47-0.19-0.9-0.49-1.28-0.88l-0.04-0.04 c-0.37-0.39-0.67-0.83-0.86-1.28c-0.19-0.48-0.3-0.99-0.3-1.51v-5.7c0-1.13,0.39-2.08,1.18-2.85c0.39-0.39,0.83-0.69,1.3-0.88 c0.48-0.19,0.99-0.3,1.55-0.3h3.62c0.07-0.18,0.12-0.35,0.19-0.53c0.18-0.47,0.39-0.93,0.6-1.41c0.23-0.48,0.44-0.93,0.67-1.37 c0.07-0.14,0.16-0.28,0.23-0.42l-2.27-2.23l-0.05-0.05c-0.37-0.39-0.65-0.83-0.84-1.3c-0.19-0.47-0.28-0.98-0.28-1.51 c0-0.53,0.09-1.04,0.28-1.51c0.19-0.47,0.46-0.91,0.83-1.3c0.02-0.02,0.02-0.04,0.04-0.04L37,38.73c0.39-0.39,0.83-0.69,1.3-0.88 c0.49-0.21,1-0.32,1.55-0.32s1.07,0.11,1.55,0.32c0.47,0.21,0.9,0.51,1.27,0.9l2.55,2.55c0.18-0.09,0.33-0.16,0.49-0.23 c0.44-0.19,0.9-0.39,1.39-0.58c0.46-0.18,0.95-0.35,1.44-0.49c0.18-0.05,0.33-0.11,0.49-0.14l0-3.17c0-0.55,0.11-1.07,0.3-1.55 c0.19-0.47,0.49-0.9,0.88-1.28l0.04-0.04c0.39-0.37,0.83-0.67,1.28-0.86c0.48-0.19,0.99-0.3,1.51-0.3h5.7 c0.55,0,1.06,0.11,1.55,0.3c0.47,0.19,0.91,0.49,1.3,0.88c0.39,0.39,0.69,0.83,0.88,1.3c0.19,0.48,0.3,0.99,0.3,1.55v3.62 c0.18,0.07,0.35,0.12,0.53,0.19c0.47,0.18,0.93,0.39,1.41,0.6c0.47,0.23,0.93,0.44,1.37,0.67c0.14,0.07,0.28,0.16,0.42,0.23 l2.23-2.23c0.39-0.39,0.83-0.69,1.3-0.9c0.49-0.21,1-0.32,1.55-0.32c0.55,0,1.06,0.11,1.55,0.32c0.49,0.21,0.91,0.49,1.3,0.9 l3.99,3.99l0.02,0.02c0.39,0.39,0.69,0.83,0.88,1.3c0.21,0.49,0.32,1,0.32,1.55c0,0.55-0.11,1.07-0.32,1.55 c-0.21,0.48-0.51,0.9-0.9,1.27l-2.55,2.6c0.07,0.16,0.16,0.32,0.23,0.47c0.18,0.4,0.37,0.84,0.56,1.32 c0.02,0.02,0.02,0.04,0.02,0.07c0.18,0.46,0.35,0.95,0.49,1.44c0.05,0.16,0.11,0.33,0.14,0.49h3.17c0.55,0,1.07,0.11,1.55,0.3 c0.47,0.19,0.9,0.49,1.28,0.88l0.04,0.04c0.37,0.39,0.67,0.83,0.86,1.28c0.19,0.48,0.3,0.99,0.3,1.51v5.7 c0,0.55-0.11,1.06-0.3,1.55c-0.19,0.47-0.49,0.91-0.88,1.32c-0.39,0.39-0.83,0.69-1.3,0.88c-0.48,0.19-0.99,0.3-1.55,0.3h-3.62 c-0.07,0.18-0.12,0.35-0.19,0.53c-0.18,0.47-0.37,0.93-0.6,1.41c-0.23,0.47-0.44,0.93-0.67,1.37c-0.07,0.14-0.16,0.28-0.23,0.42 l2.23,2.23c0.39,0.39,0.69,0.83,0.9,1.3c0.21,0.49,0.32,1,0.32,1.55c0,0.55-0.11,1.06-0.32,1.55L78.37,79.91L78.37,79.91z M44.99,116c-12.7-2.39-23.86-9.16-31.85-18.67C5.09,87.76,0.25,75.43,0.25,61.99c0-12.63,4.27-24.28,11.46-33.57 C19.04,18.93,29.41,11.9,41.37,8.8l1.78,6.86c-10.41,2.7-19.44,8.82-25.83,17.09c-6.24,8.08-9.95,18.22-9.95,29.24 c0,11.73,4.21,22.47,11.19,30.78c6.68,7.95,15.91,13.7,26.44,15.98v-7.33l13.39,10.99l-13.39,10.99L44.99,116L44.99,116L44.99,116z M65.44,7.99c12.58,2.37,23.65,9.03,31.63,18.41c8.17,9.6,13.1,22.03,13.1,35.59c0,11.93-3.8,22.97-10.26,31.98 c-6.63,9.25-16.06,16.35-27.06,20.08l-1.14-3.36l-1.14-3.36c0.28-0.09,0.56-0.19,0.83-0.29c9.21-3.31,17.11-9.38,22.72-17.2 c5.62-7.84,8.93-17.45,8.93-27.84c0-11.84-4.28-22.67-11.38-31.01c-6.67-7.84-15.82-13.49-26.24-15.76v7.29L52.05,11.52L65.44,0.53 L65.44,7.99L65.44,7.99L65.44,7.99z M65.16,61.97c0,0.69-0.07,1.35-0.19,1.99h-0.02c-0.12,0.65-0.32,1.27-0.56,1.86 c-0.26,0.62-0.56,1.2-0.91,1.71c-0.33,0.53-0.74,1.02-1.18,1.46c-0.46,0.46-0.93,0.84-1.46,1.2c-0.51,0.33-1.09,0.65-1.71,0.91 c-0.02,0.02-0.05,0.02-0.07,0.04c-0.56,0.23-1.16,0.4-1.78,0.53c-0.65,0.12-1.3,0.19-1.99,0.19c-0.69,0-1.35-0.07-1.99-0.19 c-0.65-0.12-1.27-0.32-1.86-0.56c-0.62-0.26-1.2-0.56-1.71-0.91c-0.53-0.35-1.02-0.76-1.46-1.2c-0.44-0.46-0.83-0.93-1.18-1.46 c-0.33-0.51-0.65-1.09-0.91-1.71c-0.02-0.02-0.02-0.05-0.04-0.07c-0.23-0.56-0.4-1.16-0.53-1.78c-0.12-0.65-0.19-1.3-0.19-1.99 c0-0.69,0.07-1.35,0.19-1.99c0.12-0.65,0.32-1.27,0.56-1.86c0.26-0.62,0.56-1.2,0.91-1.71c0.33-0.53,0.74-1.02,1.18-1.46 c0.46-0.46,0.93-0.84,1.46-1.2c0.51-0.33,1.09-0.65,1.71-0.92c0.02-0.02,0.05-0.02,0.07-0.04c0.58-0.23,1.18-0.4,1.79-0.53 c0.65-0.12,1.3-0.19,1.99-0.19c0.69,0,1.35,0.07,1.99,0.19c0.65,0.12,1.27,0.32,1.86,0.56c0.62,0.26,1.2,0.56,1.71,0.92 c0.53,0.35,1.02,0.76,1.46,1.2c0.44,0.46,0.83,0.93,1.18,1.46c0.33,0.51,0.65,1.09,0.91,1.71c0.02,0.02,0.02,0.05,0.04,0.07 c0.23,0.56,0.4,1.16,0.53,1.78C65.09,60.63,65.16,61.28,65.16,61.97L65.16,61.97z"/></g></svg>
+                    <span class="content__label content__label--primary">Auto: </span>
+                    <span id="auto-status" class="content__label">Active</span>
                 </div>
-                <div class="camera-config-section">
-                    <span>Shutterspeed:
-                        <span id="current-shutterspeed">{{ config.shutterspeed.current_value }}</span>
-                    </span>
-                    <select name="shutterspeed">
-                        {% for choice in config.shutterspeed.choices %}
-                            <option value="{{ choice }}">{{ choice }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="camera-config-section">
-                    <span>Aperture:
-                        <span id="current-aperture">{{ config.aperture.current_value }}</span>
-                    </span>
-                    <select name="aperture">
-                        {% for choice in config.aperture.choices %}
-                            <option value="{{ choice }}">{{ choice }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="camera-config-section">
-                    <span>Whitebalance:
-                        <span id="current-whitebalance">{{ config.whitebalance.current_value }}</span>
-                    </span>
-                    <select name="whitebalance">
-                        {% for choice in config.whitebalance.choices %}
-                            <option value="{{ choice }}">{{ choice }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+                <hr>
 
-                <div class="camera-config-section">
-                    <span>Auto Exposure Mode:
-                        <span id="current-autoexposuremode">{{ config.autoexposuremode.current_value }}</span>
-                    </span>
-                    <select name="autoexposuremode">
-                        {% for choice in config.autoexposuremode.choices %}
-                            <option value="{{ choice }}">{{ choice }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+                <div class="content__row">
+                    <div class="setting">
+                        <div class="setting__row">
+                            <span>Minutes</span>
+                            <input class="setting__input" id="minutes" name="minutes" autocomplete="off" required type="number" min="0" max="59">
+                        </div>
 
-                <div class="camera-config-section">
-                    <span>Auto Focus Mode:
-                        <span id="current-focusmode">{{ config.focusmode.current_value }}</span>
-                    </span>
-                    <select name="focusmode">
-                        {% for choice in config.focusmode.choices %}
-                            <option value="{{ choice }}">{{ choice }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
+                        <div class="setting__row">
+                            <span>Seconds</span>
+                            <input class="setting__input" id="seconds" name="seconds" autocomplete="off" required type="number" min="0" max="59">
+                        </div>
 
-                <div class="camera-config-section">
-                    <span>Image Format:
-                        <span id="current-imageformat">{{ config.imageformat.current_value }}</span>
-                    </span>
-                    <select name="imageformat">
-                        {% for choice in config.imageformat.choices %}
-                            <option value="{{ choice }}">{{ choice }}</option>
-                        {% endfor %}
-                    </select>
+                        <div class="setting__row">
+                            <span>Auto</span>
+                            <input class="setting__input setting__input--short" id="auto" name="auto" autocomplete="off" required type="checkbox">
+                        </div>
+                        
+                        <div class="setting__row setting_row--split">
+                            <div class="setting__submit">
+                                <button id="start" class="content__button">Start timelapse</button>
+                            </div>
+                            <div class="setting__submit">
+                                <button id="end" class="content__button">End timelapse</button>
+                            </div>
+                        </div>
+                    </div> 
                 </div>
-            </div> 
+            </div>
         </div>
 
-        <div class="section">
-            <div class="title">
-                <span>Storage configuration</span>
+        <div class="content__box">
+            <div class="content__header">
+                <h2 class="content__title">Configuration</h2>
             </div>
 
-            <div class="function">
-                <span>Current save folder: {{ summary.capture_path}}</span>
-                <span>Total disk capacity: <span id="disk-capacity"></span></span> 
-                <span>Used disk: <span id="disk-used"></span></span> 
-                <span>Free space: <span id="free-space"></span></span> 
-                <span>Folder in local storage: <span id="current-folder-count"></span></span>
-                <span>File in local storage: <span id="current-file-count"></span></span>
+            <div class="content__controls">
+                <div class="content__row">
+                    <span class="content__label content__label--primary">ISO: </span>
+                    <span id="iso" class="content__label"></span>
+                    <select name="iso" class="option">
+                        
+                    </select>
+                </div>
+                <hr>
+                <div class="content__row">
+                    <span class="content__label content__label--primary">Shutterspeed: </span>
+                    <span id="shutterspeed" class="content__label">400</span>
+                    <select name="shutterspeed" class="option">
+                        
+                    </select>
+                </div>
+                <hr>
+                <div class="content__row">
+                    <span class="content__label content__label--primary">Aperture: </span>
+                    <span id="aperture" class="content__label">400</span>
+                    <select name="aperture" class="option">
+                        
+                    </select>
+                </div>
+                <hr>
+                <div class="content__row">
+                    <span class="content__label content__label--primary">White Balance: </span>
+                    <span id="whitebalance" class="content__label">400</span>
+                    <select name="whitebalance" class="option">
+                        
+                    </select>
+                </div>
+                <hr>
+                <div class="content__row">
+                    <span class="content__label content__label--primary">Auto Exposure Mode: </span>
+                    <span id="autoexposuremode" class="content__label">400</span>
+                    <select name="autoexposuremode" class="option">
+                        
+                    </select>
+                </div>
+                <hr>
+                <div class="content__row">
+                    <span class="content__label content__label--primary">Auto Focus Mode: </span>
+                    <span id="focusmode" class="content__label">400</span>
+                    <select name="focusmode" class="option">
+                        
+                    </select>
+                </div>
+                <hr>
+                
+            </div>
+        </div>
 
-                <button id="manual-sync">Sync files to Google Drive</button>
-            </div> 
+        <div class="content__box">
+            <div class="content__header">
+                <h2 class="content__title">Storage</h2>
+            </div>
+            <div class="content__controls">
+                <div class="content__row">
+                    <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" x="0px" y="0px" viewBox="0 0 122.88 97.68" style="enable-background:new 0 0 122.88 97.68" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path class="st0" d="M0,0h122.88v97.68H0V0L0,0z M34.56,25.4c4.41,0,7.99,3.58,7.99,7.99c0,4.42-3.58,7.99-7.99,7.99 c-4.41,0-7.99-3.58-7.99-7.99C26.57,28.97,30.15,25.4,34.56,25.4L34.56,25.4z M68.2,59.7l15.99-27.64l16.99,42.96l-79.27,0v-5.33 l6.66-0.33l6.66-16.32l3.33,11.66h9.99l8.66-22.31L68.2,59.7L68.2,59.7z M9.13,8.09h104.63v81.49H9.13V8.09L9.13,8.09z"/></g></svg>
+                    <span class="content__label content__label--primary">Local Save Path: </span>
+                    <span class="content__label">/home/longnguyen/Pictures</span>
+                </div>
+                <hr>
+                <div class="content__row">
+                    <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" x="0px" y="0px" viewBox="0 0 122.73 122.88" style="enable-background:new 0 0 122.73 122.88" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path class="st0" d="M109.5,113.68L109.5,113.68l-6.09,0c-0.4,0-0.73-0.32-0.73-0.72V69.48l0-0.1c0-0.9-0.17-1.65-0.49-2.22 c-0.06-0.11-0.14-0.22-0.2-0.31c-0.06-0.09-0.16-0.18-0.23-0.27l-0.02-0.02c-0.3-0.3-0.68-0.53-1.12-0.69l-0.25-0.07l-0.04-0.01 l-0.01,0c-0.41-0.11-0.88-0.17-1.38-0.17h-0.05l-0.08,0H36.75c-0.89,0-1.62,0.17-2.18,0.49l-0.02,0.01l-0.27,0.17l-0.04,0.04 c-0.09,0.07-0.18,0.15-0.27,0.23l-0.02,0.02l-0.01,0.01c-0.62,0.63-0.92,1.57-0.92,2.82l0,0.04l0,43.54h0 c0,0.4-0.33,0.72-0.73,0.72l-9.85,0c0,0,0,0,0,0c-0.19,0-0.38-0.08-0.51-0.21L9.87,101.41c-0.18-0.14-0.29-0.36-0.29-0.59l0-87.91 l0-0.08c0-0.83,0.15-1.52,0.44-2.07l0,0c0.05-0.11,0.11-0.2,0.17-0.29l0.02-0.03c0.07-0.11,0.19-0.18,0.25-0.29l0.01-0.02 l0.02-0.02l0,0c0.25-0.25,0.57-0.45,0.92-0.59l0.04-0.02l0.02-0.01l0.02-0.01l0.18-0.06v0l0.01-0.01c0.42-0.14,0.9-0.2,1.44-0.21 l0.09-0.01l26.21,0c0.4,0,0.73,0.32,0.73,0.72v28.75c0,0.52,0.05,1.03,0.13,1.5c0.09,0.46,0.15,0.98,0.39,1.34l0.01,0.02l0,0.01v0 c0.18,0.44,0.42,0.87,0.67,1.25c0.24,0.37,0.56,0.77,0.9,1.13l0.02,0.02l0,0.01l0.01,0c0.48,0.5,0.94,1.15,1.62,1.27l0.01,0l0.01,0 l0.01,0.01l0.32,0.17l0,0l0.4,0.18v0l0.01,0l0,0l0,0v0c0.33,0.14,0.67,0.26,1,0.34l0.01,0l0.03,0l0.01,0l0.03,0l0.26,0.05v0 c0.45,0.09,0.93,0.14,1.42,0.14l0.02,0h47.8c1.03,0,1.98-0.18,2.85-0.53l0.01-0.01c0.87-0.36,1.67-0.9,2.39-1.61l0.03-0.03 c0.36-0.36,0.69-0.75,0.96-1.16c0.26-0.38,0.58-0.76,0.66-1.22l0-0.01l0.01-0.01l0.01-0.02c0.18-0.43,0.34-0.88,0.41-1.34l0-0.03 c0.09-0.47,0.13-0.97,0.13-1.49V9.92c0-0.4,0.33-0.73,0.73-0.73h6c0.58,0,1.09,0.07,1.54,0.21c0.48,0.15,0.89,0.39,1.2,0.7 c0.68,0.67,0.88,1.67,0.9,2.59l0.01,0.09v0.05l0,0.02v97.19c0,0.56-0.07,1.07-0.21,1.51l-0.01,0.03v0l0,0.02l-0.08,0.22l0,0 l-0.02,0.06l-0.09,0.2l-0.01,0.04l-0.02,0.04l0,0l-0.03,0.06l-0.15,0.22l0,0l-0.05,0.08l-0.14,0.17l-0.06,0.07 c-0.15,0.16-0.33,0.3-0.53,0.42c-0.17,0.1-0.36,0.19-0.55,0.26l-0.06,0.02c-0.16,0.05-0.34,0.1-0.53,0.14l-0.02,0l-0.01,0l-0.02,0 l-0.09,0.01l-0.02,0l0,0l-0.02,0c-0.22,0.03-0.49,0.05-0.76,0.06H109.5L109.5,113.68z M53.93,104.43c-1.66,0-3-1.34-3-3 c0-1.66,1.34-3,3-3h31.12c1.66,0,3,1.34,3,3c0,1.66-1.34,3-3,3H53.93L53.93,104.43z M53.93,89.03c-1.66,0-3-1.34-3-3s1.34-3,3-3 h31.12c1.66,0,3,1.34,3,3s-1.34,3-3,3H53.93L53.93,89.03z M94.03,9.39l-45.32-0.2v25.86H48.7c0,0.46,0.06,0.86,0.17,1.2 c0.03,0.06,0.04,0.1,0.07,0.15c0.09,0.23,0.22,0.44,0.4,0.61l0.03,0.03v0c0.06,0.06,0.11,0.1,0.17,0.15 c0.06,0.05,0.13,0.09,0.2,0.14c0.39,0.23,0.92,0.34,1.58,0.34v0l40.1,0.25v0l0,0v0c0.91,0,1.57-0.21,1.98-0.63 c0.42-0.43,0.63-1.1,0.63-2.02h0V9.39L94.03,9.39z M41.91,73.23h53.07v0c0.35,0,0.65,0.29,0.65,0.64l0,39.17 c0,0.35-0.29,0.65-0.65,0.65H41.91v0c-0.35,0-0.65-0.29-0.65-0.64l0-39.17C41.26,73.52,41.56,73.23,41.91,73.23L41.91,73.23 L41.91,73.23z M9.68,0h104.26c4.91,0,8.79,3.86,8.79,8.79V114c0,4.95-3.9,8.88-8.79,8.88l-96.61,0l-0.24-0.25L1.05,106.6L0,105.9 V8.76C0,3.28,4.81,0,9.68,0L9.68,0L9.68,0z"/></g></svg>
+                    <span class="content__label content__label--primary">Total Disk: </span>
+                    <span id="disk-total" class="content__label">15 GB</span>
+                </div>
+                <hr>
+                <div class="content__row">
+                    <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" x="0px" y="0px" viewBox="0 0 122.88 95.21" style="enable-background:new 0 0 122.88 95.21" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path class="st0" d="M58.7,67.43h5.46v4.83H58.7V67.43L58.7,67.43z M61.44,31.38c7.44,0,14.18,3.02,19.06,7.89 c4.88,4.88,7.89,11.61,7.89,19.06c0,7.44-3.02,14.18-7.89,19.06c-4.88,4.88-11.61,7.89-19.06,7.89c-7.44,0-14.18-3.02-19.06-7.89 c-4.88-4.88-7.89-11.61-7.89-19.06c0-7.44,3.02-14.18,7.89-19.06C47.26,34.4,54,31.38,61.44,31.38L61.44,31.38z M77.15,42.61 c-4.02-4.02-9.58-6.51-15.71-6.51c-6.14,0-11.69,2.49-15.72,6.51c-4.02,4.02-6.51,9.58-6.51,15.71c0,6.14,2.49,11.69,6.51,15.71 c4.02,4.02,9.58,6.51,15.72,6.51c6.14,0,11.69-2.49,15.71-6.51c4.02-4.02,6.51-9.58,6.51-15.71 C83.66,52.19,81.18,46.63,77.15,42.61L77.15,42.61z M2.48,20.74h4.5v-9.86c0-1.37,1.11-2.48,2.48-2.48h4.41V2.48 c0-1.37,1.11-2.48,2.48-2.48h40.26c1.37,0,2.48,1.11,2.48,2.48V8.4h54.3c1.37,0,2.48,1.11,2.48,2.48v9.86h4.53 c1.37,0,2.48,1.11,2.48,2.48c0,0.18-0.02,0.36-0.06,0.52l-8.68,63.81c-0.28,2.08-1.19,4.01-2.59,5.41 c-1.38,1.38-3.21,2.24-5.36,2.24H14.7c-2.16,0-4.03-0.87-5.43-2.26c-1.41-1.41-2.31-3.35-2.54-5.46l-6.72-64 c-0.14-1.36,0.85-2.58,2.21-2.72C2.31,20.75,2.39,20.75,2.48,20.74L2.48,20.74L2.48,20.74L2.48,20.74z M9.46,25.71H5.23l6.44,61.27 c0.1,0.98,0.5,1.85,1.1,2.46c0.5,0.5,1.17,0.81,1.93,0.81h91.5c0.75,0,1.38-0.3,1.87-0.79c0.62-0.62,1.03-1.53,1.17-2.55 l8.32-61.19L9.46,25.71L9.46,25.71L9.46,25.71z M11.94,13.37v7.36l98.97-1.05v-6.31h-54.3c-1.37,0-2.48-1.11-2.48-2.48V4.97h-35.3 v5.92c0,1.37-1.11,2.48-2.48,2.48L11.94,13.37L11.94,13.37L11.94,13.37z M64.16,64.14H58.7c-0.54-6.63-1.68-9.3-1.68-15.93 c0-2.44,1.98-4.42,4.43-4.42c2.44,0,4.43,1.98,4.43,4.42C65.87,54.84,64.71,57.51,64.16,64.14L64.16,64.14L64.16,64.14z"/></g></svg>
+                    <span class="content__label content__label--primary">Disk Used: </span>
+                    <span id="disk-used" class="content__label">5 GB</span>
+                </div>
+                <hr>
+                <div class="content__row">
+                    <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" x="0px" y="0px" viewBox="0 0 122.88 95.21" style="enable-background:new 0 0 122.88 95.21" xml:space="preserve"><g><path d="M2.48,20.74h4.5v-9.86c0-1.37,1.11-2.48,2.48-2.48h4.41V2.48c0-1.37,1.11-2.48,2.48-2.48h40.26c1.37,0,2.48,1.11,2.48,2.48 V8.4h54.3c1.37,0,2.48,1.11,2.48,2.48v9.86h4.53c1.37,0,2.48,1.11,2.48,2.48c0,0.18-0.02,0.36-0.06,0.52l-8.68,63.81 c-0.28,2.08-1.19,4.01-2.59,5.41c-1.38,1.38-3.21,2.24-5.36,2.24l-91.5,0c-2.16,0-4.03-0.87-5.43-2.26 c-1.41-1.41-2.31-3.35-2.54-5.46l-6.72-64c-0.14-1.36,0.85-2.58,2.21-2.72C2.31,20.75,2.39,20.75,2.48,20.74L2.48,20.74L2.48,20.74 L2.48,20.74z M61.44,32c7.44,0,14.18,3.02,19.06,7.89c4.88,4.88,7.89,11.61,7.89,19.05c0,7.44-3.02,14.18-7.89,19.06 c-4.88,4.88-11.61,7.89-19.06,7.89C54,85.9,47.26,82.88,42.38,78c-4.88-4.88-7.89-11.61-7.89-19.06s3.02-14.18,7.89-19.05 C47.26,35.02,54,32,61.44,32L61.44,32z M77.15,43.23c-4.02-4.02-9.58-6.51-15.71-6.51c-6.14,0-11.69,2.49-15.71,6.51 c-4.02,4.02-6.51,9.58-6.51,15.71c0,6.14,2.49,11.69,6.51,15.71c4.02,4.02,9.58,6.51,15.71,6.51c6.14,0,11.69-2.49,15.71-6.51 c4.02-4.02,6.51-9.58,6.51-15.71C83.66,52.81,81.18,47.25,77.15,43.23L77.15,43.23z M68.42,47c-0.31-0.28-0.66-0.44-1.05-0.42 c-0.39,0-0.74,0.15-1.03,0.46l-2.32,2.41l6.51,6.29l2.34-2.45c0.28-0.28,0.39-0.66,0.39-1.05c0-0.39-0.15-0.77-0.44-1.03L68.42,47 L68.42,47L68.42,47z M58.29,68.53c-0.85,0.28-1.73,0.55-2.59,0.83c-0.85,0.28-1.71,0.57-2.59,0.85c-2.04,0.66-3.16,1.03-3.4,1.1 c-0.24,0.07-0.09-0.88,0.42-2.85l1.62-6.2L61.94,51.6l6.51,6.27L58.29,68.53L58.29,68.53L58.29,68.53z M9.46,25.71H5.23l6.44,61.27 c0.1,0.98,0.5,1.85,1.1,2.46c0.5,0.5,1.17,0.81,1.93,0.81h91.5c0.75,0,1.38-0.3,1.87-0.79c0.62-0.62,1.03-1.53,1.17-2.55 l8.32-61.19L9.46,25.71L9.46,25.71L9.46,25.71z M11.94,13.37v7.36l98.97-1.05v-6.31h-54.3c-1.37,0-2.48-1.11-2.48-2.48V4.97h-35.3 v5.92c0,1.37-1.11,2.48-2.48,2.48L11.94,13.37L11.94,13.37L11.94,13.37z"/></g></svg>
+                    <span class="content__label content__label--primary">Disk Free: </span>
+                    <span id="disk-free" class="content__label">10 GB</span>
+                </div>
+                <hr>
+                <div class="content__row">
+                    <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16px" height="16px" x="0px" y="0px" width="122.88px" height="99.094px" viewBox="0 0 122.88 99.094" enable-background="new 0 0 122.88 99.094" xml:space="preserve"><g><path fill-rule="evenodd" clip-rule="evenodd" d="M28.828,0h94.052v67.744h-9.37V9.369H28.828V0L28.828,0z M14.055,15.135h94.049 v67.744h-8.358V24.864H14.055V15.135L14.055,15.135z M0,31.349h94.052v67.745H0V31.349L0,31.349z"/></g></svg>
+                    <span class="content__label content__label--primary">Folders: </span>
+                    <span id="folder-count" class="content__label">10</span>
+                </div>
+                <hr>   
+                <div class="content__row">
+                    <?xml version="1.0" encoding="utf-8"?><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" idth="16px" height="16px" x="0px" y="0px" viewBox="0 0 102.55 122.88" style="enable-background:new 0 0 102.55 122.88" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;}</style><g><path class="st0" d="M102.55,122.88H0V0h77.66l24.89,26.44L102.55,122.88L102.55,122.88z M29.82,45.51c4.33,0,7.84,3.5,7.84,7.83 c0,4.32-3.51,7.83-7.84,7.83c-4.32,0-7.83-3.51-7.83-7.83C21.99,49.01,25.5,45.51,29.82,45.51L29.82,45.51z M62.71,75.27 l14.02-24.24l2.07-3.57l1.52,3.84l9.45,44.84h-75.3v-9.12l2.87-0.1l5.26-0.27l6.06-14.81l3.77,0.2l2.84,9.98l6.92,0l8-20.59 l1.43-3.69l2.12,3.33L62.71,75.27L62.71,75.27L62.71,75.27z M96.13,115.98V32.36H73.45V5.91H6.51v110.07H96.13L96.13,115.98 L96.13,115.98z"/></g></svg>
+                    <span class="content__label content__label--primary">Pictures: </span>
+                    <span id="picture-count" class="content__label"></span>
+                </div>
+                <hr> 
+                <div class="content__row">
+                    <button id="sync" class="content__button">Sync files to cloud</button>
+                </div>
+                <div class="content__row">
+                    <button id="log" class="content__button">View log file</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <hr>
-    <div id="footer">
-        <span>Made by Long Nguyen. All rights reserved.</span>
-    </div>
+    <div class="toast"></div>
 
-    <script src="{{ url_for('static', filename='js/capture.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/setConfiguration.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/timelapse.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/storage.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/capture.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/timelapse.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/storage.js') }}"></script>
 {% endblock %}

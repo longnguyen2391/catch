@@ -1,29 +1,23 @@
-captureButton = document.getElementById("capture-button")
-imageContainer = document.getElementById("image-container") 
+document.addEventListener("DOMContentLoaded", function () {
+    const capture = document.getElementById("capture") 
 
-captureButton.addEventListener("click", async () => {
-    try {
+    capture.addEventListener("click", async function () {
         const response = await fetch("/capture/preview", {
             method: "POST"
-        }); 
+        })
 
-        const data = await response.json(); 
+        const data = await response.json() 
 
-        if (data.status === "success") {
-            const img = document.createElement('img'); 
-            img.src = data.message; 
-            img.width = 300; 
-            img.height = 240; 
+        if (data.status === "success"){
+            const image = document.createElement("img")
+            const container = document.querySelector(".content__image")
+            const containerRect = container.getBoundingClientRect()
 
-            imageContainer.innerHTML = "";
-            imageContainer.style.opacity = "1";
-            imageContainer.appendChild(img);
-        } 
-        else { 
-            alert(data.message);
+            image.src = data.message; 
+            image.width = containerRect.width; 
+            image.height = containerRect.height;
+
+            container.appendChild(image)
         }
-    }
-    catch (err) {
-        console.error(err);
-    }
+    })
 })

@@ -1,44 +1,35 @@
+import { showToast } from "./main.js"
+
 document.addEventListener("DOMContentLoaded", async function () {
-    try {
-        const response = await fetch('/configuration/storage-info', {
-            method: "GET"
-        })
+    const diskTotal = document.getElementById("disk-total")
+    const diskUsed = document.getElementById("disk-used")
+    const diskFree = document.getElementById("disk-free")
+    const folders  = document.getElementById("folder-count")
+    const pictures = document.getElementById("picture-count")
 
-        const data = await response.json();
+    const sync = document.getElementById("sync") 
 
-        console.log(data.message)
-        
-        folderElement = document.getElementById("current-folder-count");
-        fileElement = document.getElementById("current-file-count");
-        diskCapacity = document.getElementById("disk-capacity");
-        diskUsed = document.getElementById("disk-used");
-        freeSpace = document.getElementById("free-space");
-
-
-        diskCapacity.innerHTML = data.message.total + "GB"; 
-        diskUsed.innerHTML = data.message.used + "GB"; 
-        freeSpace.innerHTML = data.message.free + "GB"; 
-        folderElement.innerHTML = data.message.folder;
-        fileElement.innerHTML = data.message.file;
-    }
-    catch (err) {
-        console.log(err);
-    }
-})
-
-const syncButton = document.getElementById("manual-sync") 
-
-syncButton.addEventListener("click", async function () {
-    try { 
-        const response = await fetch('/configuration/sync', {
+    sync.addEventListener("click", async function () {
+        const syncResponse = await fetch("/configuration/sync", {
             method: "POST"
         })
 
-        const data = await response.json() 
+        const syncData = await syncResponse.json() 
 
-        alert(data.message)
-    }
-    catch (err) {
-        console.log(err)
+        showToast(syncData.message)
+    })
+
+    const storageResponse = await fetch("/configuration/storage", {
+        method: "GET" 
+    }) 
+
+    const storageData = await storageResponse.json() 
+
+    if (storageData.status === "success"){
+        diskTotal.innerHTML = `${storageData.message.total} GB`
+        diskUsed.innerHTML = `${storageData.message.used} GB`
+        diskFree.innerHTML = `${storageData.message.free} GB`
+        folders.innerHTML = `${storageData.message.folder}`
+        pictures.innerHTML = `${storageData.message.file}`
     }
 })

@@ -20,4 +20,5 @@ def preview():
 
 @bp.route('/<filename>', methods=['GET'])
 def get_image(filename): 
+    # Get picture file path from physical server storage
     return send_from_directory(current_app.camera.capture_path, filename)
