@@ -1,8 +1,8 @@
 import os 
 import datetime 
-import time
 import threading 
 import logging
+from logging.handlers import RotatingFileHandler
 
 from flask import Flask, session, render_template
 from flask_login import LoginManager, login_required
@@ -50,8 +50,8 @@ def create_app():
     logger = logging.getLogger("system") 
     logger.setLevel(logging.INFO) 
 
-    log_file = os.path.join(app.root_path, 'static', 'system.log') 
-    file_handler = logging.FileHandler(log_file)
+    log_file = os.path.join(app.root_path, 'static/assets', 'system.log') 
+    file_handler = RotatingFileHandler(log_file, maxBytes=1_000_000, backupCount=3)
     file_handler.setLevel(logging.INFO)
 
     formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
@@ -82,7 +82,7 @@ def create_app():
     from .utils import load_config
     config = load_config() 
 
-    if config['enable'] == True: 
+    if config['enable'] == "true": 
         interval = int(config['minutes']) * 60 + int(config['second'])
         timelapse_task = threading.Thread(target=app.camera.timelapse, args=(interval,))
         timelapse_task.start()

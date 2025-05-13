@@ -80,7 +80,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (configData.status === "success"){
         if (configData.message.enable === "true"){
             autoStatus.innerHTML = "Enable"
-            enableTimelapse(configData)
             auto.checked = true
         } else {
             autoStatus.innerHTML = "Disable"

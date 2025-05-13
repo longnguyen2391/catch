@@ -21,7 +21,7 @@ def set():
     name = next(iter(request.form))
     value = request.form.get(name)
     
-    with current_app.camera_lock: 
+    with current_app.camera.lock: 
         result = current_app.camera.set_config(name=name, value=value)
 
     if result:
@@ -53,7 +53,7 @@ def get():
 
 @bp.route('/status', methods=['GET'])
 def status(): 
-    with current_app.camera_lock:
+    with current_app.camera.lock:
         current_status = current_app.camera.is_connected() 
 
     return jsonify({

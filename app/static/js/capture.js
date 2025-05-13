@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
 
         const data = await response.json() 
-
+        console.log(data)
         if (data.status === "success"){
             const image = document.createElement("img")
             const container = document.querySelector(".content__image")

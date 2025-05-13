@@ -1,8 +1,8 @@
-# Python bytecode files
 **/__pycache__
-
-#environment files
 .env
 
-#config json 
+# File created by app 
+app.sqlite
 config.json
+system.log
+preview.jpg 

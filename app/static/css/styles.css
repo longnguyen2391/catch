@@ -144,6 +144,10 @@ hr {
     gap: 0.5rem;
 }
 
+.redirect {
+    width: 100%;
+}
+
 @media (max-width: 768px) {
     .content, .setting_row--split {
         grid-template-columns: 1fr;

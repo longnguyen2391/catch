@@ -20,8 +20,28 @@
         }
     }
 
-    .content {
-        padding: 0.5rem;
+    .container {
+        display: grid; 
+        grid-template-columns: 2fr 1fr;
+        gap: 1rem;
+        margin: 1rem;
+
+        .container__box {
+            width: 100%; 
+            height: 300px;
+            word-wrap: break-word;
+            border-radius: .25rem; 
+        }
+
+        .container__box--scroll {
+            overflow-y: scroll;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .container {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
 {% endblock  %} 
@@ -30,7 +50,24 @@
     <div class="hero">
         <h1 class="hero__title">System logs</h1>
     </div>
-    <div class="content">
-        {{ content | safe}}
+    <div class="container">
+        <div class="container__box container__box--scroll">
+            {{ content | safe}}
+        </div>
+        <div class="content__box">
+            <div class="content__header">
+                <h2 class="content__title">Configuration</h2>
+            </div>
+            <div class="content__controls">
+                <div class="content__row">
+                    <button class="content__button">Clear log</button>
+                </div>
+                <div class="content__row">
+                    <form class="redirect" action="{{ url_for('dashboard') }}" method="GET">
+                        <button class="content__button">Back to dashboard</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

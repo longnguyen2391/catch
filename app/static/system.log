@@ -1,9 +1,0 @@
-2025-05-12 20:35:16,143 - WARNING - Error when connecting to camera: [-105] Unknown model
-2025-05-12 20:35:16,143 - INFO - Camera initialize
-2025-05-12 20:35:16,241 - WARNING - Error when checking camera status: [-105] Unknown model
-2025-05-12 20:35:16,241 - INFO - Disconnecting with camera before connect
-2025-05-12 20:35:16,241 - INFO - Manually disconnected from camera
-2025-05-12 20:35:16,335 - WARNING - Error when connecting to camera: [-105] Unknown model
-2025-05-12 20:36:41,857 - INFO - Camera connected successfully
-2025-05-12 20:36:41,858 - INFO - Camera initialize
-2025-05-12 20:36:41,882 - INFO - Camera is working

@@ -10,6 +10,7 @@ class Controller:
         self.logger = logger
         self.lock = lock
         self.capture_path = os.path.join(os.path.expanduser("~"), "Pictures")
+        self.preview_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", "assets", "preview.jpg")
 
         self.timelapse_status = False
         self.setting = {}
@@ -65,7 +66,7 @@ class Controller:
             return False
 
     def reconnect(self): 
-        SAFETY_CHECK_TIME = 3000 
+        SAFETY_CHECK_TIME = 60 
         RECONNECT_TIME = 60
 
         while True:
@@ -137,6 +138,23 @@ class Controller:
 
     # Camera capture and timelapse methods
 
+    def capture_preview(self):
+        try: 
+            # Capture preview will open shutter of camera 
+            picture = self.camera.capture_preview()
+            picture.save(self.preview_path) 
+
+            # Turn off shutter 
+            config = self.camera.get_config()
+            viewfinder = config.get_child_by_name("viewfinder")
+
+            viewfinder.set_value(0) 
+            self.camera.set_config(config)
+            
+            return True 
+        except gp.GPhoto2Error as err: 
+            return False  
+
     def capture(self): 
         # Get captured timestamp
         timestamp = time.strftime("%Y%m%d_%H%M%S")
@@ -175,7 +193,7 @@ class Controller:
 
     def timelapse(self, interval): 
         self.set_timelapse_status(True)
-        
+        self.logger.info(f"Timelapse starting with interval: {interval}")
         while self.get_timelapse_status(): 
 
             with self.lock: 

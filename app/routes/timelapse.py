@@ -31,14 +31,13 @@ def start():
     second = request.form.get('second')
     enable = request.form.get('enable')
 
-    save_config({'minutes': minutes, 'second': second, 'enable': enable})
-
     if len(minutes) == 0 or len(second) == 0: 
         return jsonify({
             'status': 'fail', 
             'message': 'invalid data' 
         }), 400
     else: 
+        save_config({'minutes': minutes, 'second': second, 'enable': enable})
         interval = int(minutes) * 60 + int(second) 
 
         timelapse_task = threading.Thread(target=current_app.camera.timelapse, args=(interval,))

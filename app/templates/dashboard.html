@@ -221,7 +221,9 @@
                     <button id="sync" class="content__button">Sync files to cloud</button>
                 </div>
                 <div class="content__row">
-                    <button id="log" class="content__button">View log file</button>
+                    <form class="redirect" action="{{ url_for('configuration.log') }}" method="GET">
+                        <button class="content__button">View log file</button>
+                    </form>
                 </div>
             </div>
         </div>
