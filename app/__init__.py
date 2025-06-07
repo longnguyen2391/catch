@@ -51,6 +51,8 @@ def create_app():
     logger.setLevel(logging.INFO) 
     
     log_file = os.path.join(app.root_path, 'static/assets', 'system.log') 
+    
+    os.makedirs(os.path.dirname(log_file), exist_ok=True)
 
     if not os.path.exists(log_file):
         open(log_file, "a").close()
