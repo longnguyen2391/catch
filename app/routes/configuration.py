@@ -98,7 +98,7 @@ def sync():
     
 @bp.route('/log', methods=["GET"]) 
 def log(): 
-    log_file = os.path.join(current_app.root_path, 'static', 'system.log')
+    log_file = os.path.join(current_app.root_path, 'static/assets', 'system.log')
 
     with open(log_file, "r") as f: 
         content = f.read().replace("\n", "<br>")
