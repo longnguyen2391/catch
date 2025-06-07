@@ -1,32 +1,22 @@
 #!/bin/bash
 
 LOCAL_DIR="$HOME/Pictures"
-REMOTE_DIR="gdrive:"
+REMOTE_DIR="gdrive-test:"
 
-for folder in "$LOCAL_DIR"/*; do
-    if [ -d "$folder" ]; then
-        foldername=$(basename "$folder")
+for folder in "$LOCAL_DIR"/*
+do 
+    FOLDER_NAME=$(basename "$folder") 
 
-        if [[ "$foldername" =~ ^[0-9]{8}$ ]]; then
+    if [[ $FOLDER_NAME =~ ^[0-9]{8}$ ]]
+    then 
 
-            if ! rclone lsf "$REMOTE_DIR" | grep -w "$foldername/" > /dev/null; then
-                echo "Uploading folder $foldername..."
-
-                rclone mkdir "$REMOTE_DIR/$foldername"
-
-                rclone copy "$folder" "$REMOTE_DIR/$foldername"
-
-                if [ $? -eq 0 ]; then
-                    echo "Upload completed. Deleting $foldername"
-                    rm -rf "$folder"
-                else
-                    echo "Error: $foldername"
-                fi
-            else
-                echo "$foldername existed. Deleting."
-                rm -rf "$folder"
-            fi
+        if ! rclone lsd $REMOTE_DIR | grep -w $FOLDER_NAME > /dev/null 
+        then 
+            rclone mkdir $FOLDER_NAME
+            echo "mkdir $FOLDER_NAME" 
         fi
+
+        rclone copy "$folder" "$REMOTE_DIR/$FOLDER_NAME" --transfers=3 --drive-chunk-size=16M --progress 
+        rclone delete "$folder" 
     fi
 done
-
