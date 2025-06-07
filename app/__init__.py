@@ -49,8 +49,12 @@ def create_app():
     # Configurating logger for camera controller
     logger = logging.getLogger("system") 
     logger.setLevel(logging.INFO) 
-
+    
     log_file = os.path.join(app.root_path, 'static/assets', 'system.log') 
+
+    if not os.path.exists(log_file):
+        open(log_file, "a").close()
+
     file_handler = RotatingFileHandler(log_file, maxBytes=1_000_000, backupCount=3)
     file_handler.setLevel(logging.INFO)
 
