@@ -76,25 +76,6 @@ def storage_info():
             'free': free
         }
     }), 200
-
-@bp.route('/sync', methods=['POST'])
-def sync():
-    success, result = sync_files() 
-
-    if success:
-        current_app.camera.logger.info(f"Syncing files to cloud with result: {result}")
-
-        return jsonify({
-            'status': 'success',
-            'message': result
-        }), 200
-    else: 
-        current_app.camera.logger.warning(f"Failed to syncing files to cloud with result: {result}")
-
-        return jsonify({
-            'status': 'fail',
-            'message': result
-        }), 400 
     
 @bp.route('/log', methods=["GET"]) 
 def log(): 
