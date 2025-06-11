@@ -13,6 +13,9 @@ from app.controller import Controller
 def create_app():
     app = Flask(__name__)
 
+    # Ensure instance folder exists
+    os.makedirs(app.instance_path, exist_ok=True)
+
     # Load app configuration
     app.config.from_mapping(
         SECRET_KEY='dev',
