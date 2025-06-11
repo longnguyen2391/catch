@@ -7,19 +7,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     const folders  = document.getElementById("folder-count")
     const pictures = document.getElementById("picture-count")
 
-    // Handle sync button
-    const sync = document.getElementById("sync") 
-
-    sync.addEventListener("click", async function () {
-        const syncResponse = await fetch("/configuration/sync", {
-            method: "POST"
-        })
-
-        const syncData = await syncResponse.json() 
-
-        showToast(syncData.message)
-    })
-
     const log = document.getElementById("log") 
 
     // Get storage information and display
